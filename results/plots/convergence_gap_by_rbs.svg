@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="90" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="700">Convergence Gap by RB Count</text>
+<line x1="90" y1="475" x2="670" y2="475" stroke="#222" stroke-width="1.2"/>
+<line x1="90" y1="55" x2="90" y2="475" stroke="#222" stroke-width="1.2"/>
+<line x1="90" y1="475.00" x2="670" y2="475.00" stroke="#e5e5e5"/>
+<text x="78" y="479.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0</text>
+<line x1="90" y1="391.00" x2="670" y2="391.00" stroke="#e5e5e5"/>
+<text x="78" y="395.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">234</text>
+<line x1="90" y1="307.00" x2="670" y2="307.00" stroke="#e5e5e5"/>
+<text x="78" y="311.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">468</text>
+<line x1="90" y1="223.00" x2="670" y2="223.00" stroke="#e5e5e5"/>
+<text x="78" y="227.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">702</text>
+<line x1="90" y1="139.00" x2="670" y2="139.00" stroke="#e5e5e5"/>
+<text x="78" y="143.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">936</text>
+<line x1="90" y1="55.00" x2="670" y2="55.00" stroke="#e5e5e5"/>
+<text x="78" y="59.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">1.17e+03</text>
+<line x1="90.00" y1="475" x2="90.00" y2="480" stroke="#222"/>
+<text x="90.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">5</text>
+<line x1="244.67" y1="475" x2="244.67" y2="480" stroke="#222"/>
+<text x="244.67" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">9</text>
+<line x1="360.67" y1="475" x2="360.67" y2="480" stroke="#222"/>
+<text x="360.67" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">12</text>
+<line x1="476.67" y1="475" x2="476.67" y2="480" stroke="#222"/>
+<text x="476.67" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">15</text>
+<line x1="670.00" y1="475" x2="670.00" y2="480" stroke="#222"/>
+<text x="670.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">20</text>
+<polyline points="90.00,86.11 244.67,295.99 360.67,372.58 476.67,461.53 670.00,465.70" fill="none" stroke="#1f77b4" stroke-width="2.4"/>
+<circle cx="90.00" cy="86.11" r="3.5" fill="#1f77b4"/>
+<circle cx="244.67" cy="295.99" r="3.5" fill="#1f77b4"/>
+<circle cx="360.67" cy="372.58" r="3.5" fill="#1f77b4"/>
+<circle cx="476.67" cy="461.53" r="3.5" fill="#1f77b4"/>
+<circle cx="670.00" cy="465.70" r="3.5" fill="#1f77b4"/>
+<line x1="705" y1="79" x2="728" y2="79" stroke="#1f77b4" stroke-width="3"/>
+<text x="736" y="83" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.1)+Greedy</text>
+<polyline points="90.00,86.11 244.67,304.46 360.67,375.47 476.67,464.84 670.00,466.66" fill="none" stroke="#d62728" stroke-width="2.4"/>
+<circle cx="90.00" cy="86.11" r="3.5" fill="#d62728"/>
+<circle cx="244.67" cy="304.46" r="3.5" fill="#d62728"/>
+<circle cx="360.67" cy="375.47" r="3.5" fill="#d62728"/>
+<circle cx="476.67" cy="464.84" r="3.5" fill="#d62728"/>
+<circle cx="670.00" cy="466.66" r="3.5" fill="#d62728"/>
+<line x1="705" y1="101" x2="728" y2="101" stroke="#d62728" stroke-width="3"/>
+<text x="736" y="105" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.1)+Projection</text>
+<polyline points="90.00,126.51 244.67,301.74 360.67,381.50 476.67,459.99 670.00,466.04" fill="none" stroke="#2ca02c" stroke-width="2.4"/>
+<circle cx="90.00" cy="126.51" r="3.5" fill="#2ca02c"/>
+<circle cx="244.67" cy="301.74" r="3.5" fill="#2ca02c"/>
+<circle cx="360.67" cy="381.50" r="3.5" fill="#2ca02c"/>
+<circle cx="476.67" cy="459.99" r="3.5" fill="#2ca02c"/>
+<circle cx="670.00" cy="466.04" r="3.5" fill="#2ca02c"/>
+<line x1="705" y1="123" x2="728" y2="123" stroke="#2ca02c" stroke-width="3"/>
+<text x="736" y="127" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.3)+Greedy</text>
+<polyline points="90.00,122.55 244.67,310.25 360.67,378.80 476.67,464.85 670.00,466.69" fill="none" stroke="#9467bd" stroke-width="2.4"/>
+<circle cx="90.00" cy="122.55" r="3.5" fill="#9467bd"/>
+<circle cx="244.67" cy="310.25" r="3.5" fill="#9467bd"/>
+<circle cx="360.67" cy="378.80" r="3.5" fill="#9467bd"/>
+<circle cx="476.67" cy="464.85" r="3.5" fill="#9467bd"/>
+<circle cx="670.00" cy="466.69" r="3.5" fill="#9467bd"/>
+<line x1="705" y1="145" x2="728" y2="145" stroke="#9467bd" stroke-width="3"/>
+<text x="736" y="149" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.3)+Projection</text>
+<polyline points="90.00,133.72 244.67,303.68 360.67,385.98 476.67,457.97 670.00,465.75" fill="none" stroke="#ff7f0e" stroke-width="2.4"/>
+<circle cx="90.00" cy="133.72" r="3.5" fill="#ff7f0e"/>
+<circle cx="244.67" cy="303.68" r="3.5" fill="#ff7f0e"/>
+<circle cx="360.67" cy="385.98" r="3.5" fill="#ff7f0e"/>
+<circle cx="476.67" cy="457.97" r="3.5" fill="#ff7f0e"/>
+<circle cx="670.00" cy="465.75" r="3.5" fill="#ff7f0e"/>
+<line x1="705" y1="167" x2="728" y2="167" stroke="#ff7f0e" stroke-width="3"/>
+<text x="736" y="171" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.8)+Greedy</text>
+<polyline points="90.00,127.01 244.67,317.23 360.67,379.04 476.67,464.85 670.00,466.69" fill="none" stroke="#17becf" stroke-width="2.4"/>
+<circle cx="90.00" cy="127.01" r="3.5" fill="#17becf"/>
+<circle cx="244.67" cy="317.23" r="3.5" fill="#17becf"/>
+<circle cx="360.67" cy="379.04" r="3.5" fill="#17becf"/>
+<circle cx="476.67" cy="464.85" r="3.5" fill="#17becf"/>
+<circle cx="670.00" cy="466.69" r="3.5" fill="#17becf"/>
+<line x1="705" y1="189" x2="728" y2="189" stroke="#17becf" stroke-width="3"/>
+<text x="736" y="193" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.8)+Projection</text>
+<polyline points="90.00,156.35 244.67,349.16 360.67,407.22 476.67,456.27 670.00,465.16" fill="none" stroke="#4d4d4d" stroke-width="2.4"/>
+<circle cx="90.00" cy="156.35" r="3.5" fill="#4d4d4d"/>
+<circle cx="244.67" cy="349.16" r="3.5" fill="#4d4d4d"/>
+<circle cx="360.67" cy="407.22" r="3.5" fill="#4d4d4d"/>
+<circle cx="476.67" cy="456.27" r="3.5" fill="#4d4d4d"/>
+<circle cx="670.00" cy="465.16" r="3.5" fill="#4d4d4d"/>
+<line x1="705" y1="211" x2="728" y2="211" stroke="#4d4d4d" stroke-width="3"/>
+<text x="736" y="215" font-family="Arial, sans-serif" font-size="12">Greedy-Cost</text>
+<polyline points="90.00,160.47 244.67,354.80 360.67,411.40 476.67,464.86 670.00,466.70" fill="none" stroke="#1f77b4" stroke-width="2.4"/>
+<circle cx="90.00" cy="160.47" r="3.5" fill="#1f77b4"/>
+<circle cx="244.67" cy="354.80" r="3.5" fill="#1f77b4"/>
+<circle cx="360.67" cy="411.40" r="3.5" fill="#1f77b4"/>
+<circle cx="476.67" cy="464.86" r="3.5" fill="#1f77b4"/>
+<circle cx="670.00" cy="466.70" r="3.5" fill="#1f77b4"/>
+<line x1="705" y1="233" x2="728" y2="233" stroke="#1f77b4" stroke-width="3"/>
+<text x="736" y="237" font-family="Arial, sans-serif" font-size="12">Hungarian</text>
+<polyline points="90.00,158.01 244.67,349.57 360.67,406.38 476.67,460.97 670.00,465.32" fill="none" stroke="#d62728" stroke-width="2.4"/>
+<circle cx="90.00" cy="158.01" r="3.5" fill="#d62728"/>
+<circle cx="244.67" cy="349.57" r="3.5" fill="#d62728"/>
+<circle cx="360.67" cy="406.38" r="3.5" fill="#d62728"/>
+<circle cx="476.67" cy="460.97" r="3.5" fill="#d62728"/>
+<circle cx="670.00" cy="465.32" r="3.5" fill="#d62728"/>
+<line x1="705" y1="255" x2="728" y2="255" stroke="#d62728" stroke-width="3"/>
+<text x="736" y="259" font-family="Arial, sans-serif" font-size="12">Hybrid-Score-Greedy(alpha=0.25)</text>
+<polyline points="90.00,160.47 244.67,354.80 360.67,411.40 476.67,464.86 670.00,466.70" fill="none" stroke="#2ca02c" stroke-width="2.4"/>
+<circle cx="90.00" cy="160.47" r="3.5" fill="#2ca02c"/>
+<circle cx="244.67" cy="354.80" r="3.5" fill="#2ca02c"/>
+<circle cx="360.67" cy="411.40" r="3.5" fill="#2ca02c"/>
+<circle cx="476.67" cy="464.86" r="3.5" fill="#2ca02c"/>
+<circle cx="670.00" cy="466.70" r="3.5" fill="#2ca02c"/>
+<line x1="705" y1="277" x2="728" y2="277" stroke="#2ca02c" stroke-width="3"/>
+<text x="736" y="281" font-family="Arial, sans-serif" font-size="12">LP-Relax+Projection</text>
+<text x="380.0" y="532" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Number of RBs</text>
+<text transform="translate(24 265.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Mean convergence-gap objective</text>
+</svg>

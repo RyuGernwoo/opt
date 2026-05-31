@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="90" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="700">Objective Gap vs Hungarian by Users</text>
+<line x1="90" y1="475" x2="670" y2="475" stroke="#222" stroke-width="1.2"/>
+<line x1="90" y1="55" x2="90" y2="475" stroke="#222" stroke-width="1.2"/>
+<line x1="90" y1="475.00" x2="670" y2="475.00" stroke="#e5e5e5"/>
+<text x="78" y="479.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0</text>
+<line x1="90" y1="391.00" x2="670" y2="391.00" stroke="#e5e5e5"/>
+<text x="78" y="395.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">27.3</text>
+<line x1="90" y1="307.00" x2="670" y2="307.00" stroke="#e5e5e5"/>
+<text x="78" y="311.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">54.6</text>
+<line x1="90" y1="223.00" x2="670" y2="223.00" stroke="#e5e5e5"/>
+<text x="78" y="227.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">81.9</text>
+<line x1="90" y1="139.00" x2="670" y2="139.00" stroke="#e5e5e5"/>
+<text x="78" y="143.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">109</text>
+<line x1="90" y1="55.00" x2="670" y2="55.00" stroke="#e5e5e5"/>
+<text x="78" y="59.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">137</text>
+<line x1="90.00" y1="475" x2="90.00" y2="480" stroke="#222"/>
+<text x="90.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">10</text>
+<line x1="131.43" y1="475" x2="131.43" y2="480" stroke="#222"/>
+<text x="131.43" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">15</text>
+<line x1="172.86" y1="475" x2="172.86" y2="480" stroke="#222"/>
+<text x="172.86" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">20</text>
+<line x1="255.71" y1="475" x2="255.71" y2="480" stroke="#222"/>
+<text x="255.71" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">30</text>
+<line x1="421.43" y1="475" x2="421.43" y2="480" stroke="#222"/>
+<text x="421.43" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">50</text>
+<line x1="670.00" y1="475" x2="670.00" y2="480" stroke="#222"/>
+<text x="670.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">80</text>
+<polyline points="90.00,429.54 131.43,136.47 172.86,297.72 255.71,414.33 421.43,436.59 670.00,456.96" fill="none" stroke="#1f77b4" stroke-width="2.4"/>
+<circle cx="90.00" cy="429.54" r="3.5" fill="#1f77b4"/>
+<circle cx="131.43" cy="136.47" r="3.5" fill="#1f77b4"/>
+<circle cx="172.86" cy="297.72" r="3.5" fill="#1f77b4"/>
+<circle cx="255.71" cy="414.33" r="3.5" fill="#1f77b4"/>
+<circle cx="421.43" cy="436.59" r="3.5" fill="#1f77b4"/>
+<circle cx="670.00" cy="456.96" r="3.5" fill="#1f77b4"/>
+<line x1="705" y1="79" x2="728" y2="79" stroke="#1f77b4" stroke-width="3"/>
+<text x="736" y="83" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.1)+Greedy</text>
+<polyline points="90.00,446.56 131.43,86.11 172.86,291.28 255.71,411.05 421.43,434.71 670.00,457.18" fill="none" stroke="#d62728" stroke-width="2.4"/>
+<circle cx="90.00" cy="446.56" r="3.5" fill="#d62728"/>
+<circle cx="131.43" cy="86.11" r="3.5" fill="#d62728"/>
+<circle cx="172.86" cy="291.28" r="3.5" fill="#d62728"/>
+<circle cx="255.71" cy="411.05" r="3.5" fill="#d62728"/>
+<circle cx="421.43" cy="434.71" r="3.5" fill="#d62728"/>
+<circle cx="670.00" cy="457.18" r="3.5" fill="#d62728"/>
+<line x1="705" y1="101" x2="728" y2="101" stroke="#d62728" stroke-width="3"/>
+<text x="736" y="105" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.1)+Projection</text>
+<polyline points="90.00,423.82 131.43,197.60 172.86,272.03 255.71,419.97 421.43,431.12 670.00,455.75" fill="none" stroke="#2ca02c" stroke-width="2.4"/>
+<circle cx="90.00" cy="423.82" r="3.5" fill="#2ca02c"/>
+<circle cx="131.43" cy="197.60" r="3.5" fill="#2ca02c"/>
+<circle cx="172.86" cy="272.03" r="3.5" fill="#2ca02c"/>
+<circle cx="255.71" cy="419.97" r="3.5" fill="#2ca02c"/>
+<circle cx="421.43" cy="431.12" r="3.5" fill="#2ca02c"/>
+<circle cx="670.00" cy="455.75" r="3.5" fill="#2ca02c"/>
+<line x1="705" y1="123" x2="728" y2="123" stroke="#2ca02c" stroke-width="3"/>
+<text x="736" y="127" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.3)+Greedy</text>
+<polyline points="90.00,471.40 131.43,101.08 172.86,270.64 255.71,416.94 421.43,432.31 670.00,455.04" fill="none" stroke="#9467bd" stroke-width="2.4"/>
+<circle cx="90.00" cy="471.40" r="3.5" fill="#9467bd"/>
+<circle cx="131.43" cy="101.08" r="3.5" fill="#9467bd"/>
+<circle cx="172.86" cy="270.64" r="3.5" fill="#9467bd"/>
+<circle cx="255.71" cy="416.94" r="3.5" fill="#9467bd"/>
+<circle cx="421.43" cy="432.31" r="3.5" fill="#9467bd"/>
+<circle cx="670.00" cy="455.04" r="3.5" fill="#9467bd"/>
+<line x1="705" y1="145" x2="728" y2="145" stroke="#9467bd" stroke-width="3"/>
+<text x="736" y="149" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.3)+Projection</text>
+<polyline points="90.00,426.65 131.43,185.09 172.86,262.49 255.71,416.57 421.43,431.13 670.00,452.76" fill="none" stroke="#ff7f0e" stroke-width="2.4"/>
+<circle cx="90.00" cy="426.65" r="3.5" fill="#ff7f0e"/>
+<circle cx="131.43" cy="185.09" r="3.5" fill="#ff7f0e"/>
+<circle cx="172.86" cy="262.49" r="3.5" fill="#ff7f0e"/>
+<circle cx="255.71" cy="416.57" r="3.5" fill="#ff7f0e"/>
+<circle cx="421.43" cy="431.13" r="3.5" fill="#ff7f0e"/>
+<circle cx="670.00" cy="452.76" r="3.5" fill="#ff7f0e"/>
+<line x1="705" y1="167" x2="728" y2="167" stroke="#ff7f0e" stroke-width="3"/>
+<text x="736" y="171" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.8)+Greedy</text>
+<polyline points="90.00,474.93 131.43,101.08 172.86,264.54 255.71,419.81 421.43,426.87 670.00,452.18" fill="none" stroke="#17becf" stroke-width="2.4"/>
+<circle cx="90.00" cy="474.93" r="3.5" fill="#17becf"/>
+<circle cx="131.43" cy="101.08" r="3.5" fill="#17becf"/>
+<circle cx="172.86" cy="264.54" r="3.5" fill="#17becf"/>
+<circle cx="255.71" cy="419.81" r="3.5" fill="#17becf"/>
+<circle cx="421.43" cy="426.87" r="3.5" fill="#17becf"/>
+<circle cx="670.00" cy="452.18" r="3.5" fill="#17becf"/>
+<line x1="705" y1="189" x2="728" y2="189" stroke="#17becf" stroke-width="3"/>
+<text x="736" y="193" font-family="Arial, sans-serif" font-size="12">Entropy-Relax(tau=0.8)+Projection</text>
+<polyline points="90.00,366.40 131.43,426.38 172.86,458.48 255.71,470.42 421.43,473.24 670.00,473.96" fill="none" stroke="#4d4d4d" stroke-width="2.4"/>
+<circle cx="90.00" cy="366.40" r="3.5" fill="#4d4d4d"/>
+<circle cx="131.43" cy="426.38" r="3.5" fill="#4d4d4d"/>
+<circle cx="172.86" cy="458.48" r="3.5" fill="#4d4d4d"/>
+<circle cx="255.71" cy="470.42" r="3.5" fill="#4d4d4d"/>
+<circle cx="421.43" cy="473.24" r="3.5" fill="#4d4d4d"/>
+<circle cx="670.00" cy="473.96" r="3.5" fill="#4d4d4d"/>
+<line x1="705" y1="211" x2="728" y2="211" stroke="#4d4d4d" stroke-width="3"/>
+<text x="736" y="215" font-family="Arial, sans-serif" font-size="12">Greedy-Cost</text>
+<polyline points="90.00,475.00 131.43,475.00 172.86,475.00 255.71,475.00 421.43,475.00 670.00,475.00" fill="none" stroke="#1f77b4" stroke-width="2.4"/>
+<circle cx="90.00" cy="475.00" r="3.5" fill="#1f77b4"/>
+<circle cx="131.43" cy="475.00" r="3.5" fill="#1f77b4"/>
+<circle cx="172.86" cy="475.00" r="3.5" fill="#1f77b4"/>
+<circle cx="255.71" cy="475.00" r="3.5" fill="#1f77b4"/>
+<circle cx="421.43" cy="475.00" r="3.5" fill="#1f77b4"/>
+<circle cx="670.00" cy="475.00" r="3.5" fill="#1f77b4"/>
+<line x1="705" y1="233" x2="728" y2="233" stroke="#1f77b4" stroke-width="3"/>
+<text x="736" y="237" font-family="Arial, sans-serif" font-size="12">Hungarian</text>
+<polyline points="90.00,380.89 131.43,451.50 172.86,464.43 255.71,472.76 421.43,473.99 670.00,474.74" fill="none" stroke="#d62728" stroke-width="2.4"/>
+<circle cx="90.00" cy="380.89" r="3.5" fill="#d62728"/>
+<circle cx="131.43" cy="451.50" r="3.5" fill="#d62728"/>
+<circle cx="172.86" cy="464.43" r="3.5" fill="#d62728"/>
+<circle cx="255.71" cy="472.76" r="3.5" fill="#d62728"/>
+<circle cx="421.43" cy="473.99" r="3.5" fill="#d62728"/>
+<circle cx="670.00" cy="474.74" r="3.5" fill="#d62728"/>
+<line x1="705" y1="255" x2="728" y2="255" stroke="#d62728" stroke-width="3"/>
+<text x="736" y="259" font-family="Arial, sans-serif" font-size="12">Hybrid-Score-Greedy(alpha=0.25)</text>
+<polyline points="90.00,475.00 131.43,475.00 172.86,475.00 255.71,475.00 421.43,475.00 670.00,475.00" fill="none" stroke="#2ca02c" stroke-width="2.4"/>
+<circle cx="90.00" cy="475.00" r="3.5" fill="#2ca02c"/>
+<circle cx="131.43" cy="475.00" r="3.5" fill="#2ca02c"/>
+<circle cx="172.86" cy="475.00" r="3.5" fill="#2ca02c"/>
+<circle cx="255.71" cy="475.00" r="3.5" fill="#2ca02c"/>
+<circle cx="421.43" cy="475.00" r="3.5" fill="#2ca02c"/>
+<circle cx="670.00" cy="475.00" r="3.5" fill="#2ca02c"/>
+<line x1="705" y1="277" x2="728" y2="277" stroke="#2ca02c" stroke-width="3"/>
+<text x="736" y="281" font-family="Arial, sans-serif" font-size="12">LP-Relax+Projection</text>
+<text x="380.0" y="532" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Number of users</text>
+<text transform="translate(24 265.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Objective gap (%)</text>
+</svg>
