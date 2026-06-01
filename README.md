@@ -1,175 +1,189 @@
 # Relaxed RB Allocation Experiments
 
-## 배경
+Wireless federated learning의 사용자 선택 및 RB(Resource Block) 할당 문제를 대상으로, 논문식 Hungarian hard matching과 continuous relaxation 기반 대안을 비교하는 실험 저장소입니다.
 
-이 저장소는 `A_Joint_Learning_and_Communications_Framework_for_Federated_Learning_Over_Wireless_Networks.pdf`의 wireless FL 자원 할당 문제를 바탕으로, hard assignment 기반 Hungarian matching과 continuous relaxation 기반 근사 방법을 비교하는 실험 코드입니다.
+## Part 1. 문제와 제안
 
-베이스 논문은 binary user selection과 RB allocation을 포함한 non-convex MINLP를 FL 수렴률 분석으로 단순화합니다. 이후 각 사용자-RB 조합에 대해 최적 송신 전력 `P*_{i,n}`을 먼저 계산하고, 남은 사용자-RB 할당 문제를 Hungarian bipartite matching으로 풉니다.
+### 배경
 
-## 제안 방법
+- 대상 문제
+  - Wireless FL에서 각 round마다 학습에 참여할 사용자와 RB를 함께 선택해야 합니다.
+  - 원래 문제는 binary user selection, binary RB allocation, 송신 전력 최적화를 포함하는 non-convex MINLP입니다.
+- 베이스 논문 접근
+  - FL 수렴률 분석으로 목적함수를 단순화합니다.
+  - 각 사용자-RB 조합의 최적 송신 전력 `P*_{i,n}`을 먼저 계산합니다.
+  - 남은 RB 할당은 Hungarian bipartite matching으로 풉니다.
+- 문제점
+  - 최종 할당이 0/1 hard assignment라 differentiable pipeline으로 연결하기 어렵습니다.
+  - continuous relaxation을 해도 최종 시스템이 0/1 할당을 요구하면 rounding/projection이 필요합니다.
+  - rounding/projection 품질은 상황에 따라 Hungarian 대비 objective gap을 크게 만들 수 있습니다.
 
-본 구현은 binary RB 할당 변수를 연속 변수로 완화합니다.
+### 아이디어 제시
+
+- 공통 출발점
+  - `P*_{i,n}`과 `qhat_{i,n}`을 미리 계산하고 상수로 둡니다.
+  - binary allocation을 continuous variable로 완화합니다.
 
 ```text
 r_{i,n} in {0,1}  ->  x_{i,n} in [0,1]
 ```
 
-각 사용자-RB 조합에 대해 `P*_{i,n}`과 `qhat_{i,n}`을 미리 계산한 뒤 상수로 취급하면 목적함수는 다음과 같은 선형 assignment 형태가 됩니다.
+- 두 가지 실험 축
+  - Hard 복원 실험: relaxation 또는 soft score를 만든 뒤 rounding/projection으로 0/1 assignment를 복원합니다.
+  - Continuous soft 실험: rounding 없이 `X in [0,1]` 자체를 time-sharing 또는 probabilistic allocation으로 평가합니다.
+
+### 아이디어의 핵심 개념 설명
+
+- 선형화된 목적함수
 
 ```text
 min_X sum_i K_i (1 - sum_n x_{i,n} + sum_n x_{i,n} qhat_{i,n})
 ```
 
-비교한 방법은 다음과 같습니다.
+- 해석
+  - `K_i`: 사용자 `i`의 sample count.
+  - `qhat_{i,n}`: `P*_{i,n}`에서의 packet error probability.
+  - `x_{i,n}`: 사용자 `i`가 RB `n`을 사용하는 정도.
+- 핵심 관찰
+  - `P*`와 `qhat`을 고정하면 objective와 assignment 제약이 선형입니다.
+  - LP relaxation은 convex problem입니다.
+  - 다만 assignment polytope의 extreme point가 integral이므로, 단순 LP는 실제로 Hungarian과 같은 hard solution으로 수렴할 수 있습니다.
 
-- `Hungarian`: 논문식 hard matching 기준선.
-- `LP-Relax+Projection`: LP relaxation을 푼 뒤 matching projection으로 0/1 할당 복원.
-- `Greedy-Cost`: 원래 cost 기준 greedy rounding.
-- `Entropy-Relax(tau=...)+Greedy`: entropy soft assignment 후 greedy rounding.
-- `Entropy-Relax(tau=...)+Projection`: entropy soft assignment 후 matching projection.
-- `Hybrid-Score-Greedy(alpha=0.25)`: soft score와 원래 cost utility를 혼합한 greedy rounding.
+### 아이디어의 구조/아키텍처 설명
 
-## 실행 방법
+- 데이터 생성
+  - `src/relaxed_ra/problem.py`: 사용자 수, RB 수, channel gain, sample count, packet error matrix 생성.
+- Solver 계층
+  - `Hungarian`: 논문식 hard matching 기준선.
+  - `LP-Relax+Projection`: LP relaxation 후 matching projection.
+  - `Greedy-Cost`: cost 기준 greedy hard assignment.
+  - `Entropy-Relax+Greedy/Projection`: entropy soft matrix 생성 후 hard 복원.
+  - `Hybrid-Score-Greedy`: soft score와 원래 cost utility를 혼합한 greedy 복원.
+  - `Continuous-LP(HiGHS)`: `X in [0,1]` LP를 solver로 직접 풂.
+  - `Soft-Entropy-KKT`: entropy-regularized convex 문제를 KKT/Sinkhorn scaling으로 풂.
+- 실험 실행
+  - `run_experiments.py`: hard assignment 복원 실험.
+  - `run_continuous_experiments.py`: continuous soft allocation 실험.
+- 산출물
+  - CSV: raw result와 summary.
+  - SVG plot: objective gap, runtime, fractional mass ratio.
 
-필요 패키지는 Python, `numpy`, `scipy`입니다.
+### 사용한 수학적 기법
 
-```powershell
-python -m unittest discover -v
-python run_experiments.py --output results --seeds 5
-```
-
-빠른 smoke run은 다음과 같습니다.
-
-```powershell
-python run_experiments.py --output results_quick --seeds 2 --quick
-```
-
-생성 파일:
-
-- `results/raw_results.csv`
-- `results/summary.csv`
-- `results/plots/objective_gap_by_users.svg`
-- `results/plots/runtime_by_users.svg`
-- `results/plots/convergence_gap_by_rbs.svg`
-
-continuous soft allocation만 별도로 평가하려면 다음을 실행합니다.
-
-```powershell
-python run_continuous_experiments.py --output results/continuous --seeds 5
-```
-
-이 실험은 rounding/projection으로 0/1 assignment를 복원하지 않고, 최종 자원 할당 자체를 `X in [0, 1]`인 time-sharing 또는 soft allocation으로 해석합니다.
-
-생성 파일:
-
-- `results/continuous/raw_results.csv`
-- `results/continuous/summary.csv`
-- `results/continuous/plots/soft_objective_gap_by_users.svg`
-- `results/continuous/plots/fractional_mass_by_users.svg`
-- `results/continuous/plots/soft_runtime_by_users.svg`
-
-## 결과
-
-개선 방법을 포함해 `--seeds 5` 조건으로 전체 실험을 다시 실행했습니다. 결과는 `raw_results.csv` 550개 row, `summary.csv` 110개 row로 생성되었습니다.
-
-시각적 plot:
-
-- [사용자 수에 따른 objective gap](results/plots/objective_gap_by_users.svg)
-- [사용자 수에 따른 runtime](results/plots/runtime_by_users.svg)
-- [RB 수에 따른 convergence-gap objective](results/plots/convergence_gap_by_rbs.svg)
-
-### 전체 평균
-
-| 방법 | Hungarian 대비 평균 objective gap | 최악 gap | 평균 runtime | 평균 FL quality |
-|---|---:|---:|---:|---:|
-| `Hungarian` | 0.00% | 0.00% | 0.093 ms | 0.7288 |
-| `LP-Relax+Projection` | 0.00% | 0.00% | 6.580 ms | 0.7288 |
-| `Hybrid-Score-Greedy(alpha=0.25)` | 10.30% | 39.79% | 2.788 ms | 0.7238 |
-| `Greedy-Cost` | 16.41% | 89.39% | 0.225 ms | 0.7213 |
-| `Entropy-Relax(tau=0.8)+Projection` | 30.20% | 121.58% | 5.735 ms | 0.6710 |
-| `Entropy-Relax(tau=0.3)+Projection` | 30.50% | 121.58% | 5.533 ms | 0.6708 |
-| `Entropy-Relax(tau=0.1)+Projection` | 32.98% | 126.44% | 5.051 ms | 0.6651 |
-| `Entropy-Relax(tau=0.3)+Greedy` | 34.25% | 90.19% | 5.367 ms | 0.6720 |
-| `Entropy-Relax(tau=0.8)+Greedy` | 36.47% | 94.26% | 5.899 ms | 0.6716 |
-| `Entropy-Relax(tau=0.1)+Greedy` | 37.16% | 110.07% | 5.115 ms | 0.6642 |
-
-### 사용자 수 sweep
-
-`R=12`로 고정했을 때, `LP-Relax+Projection`은 모든 사용자 수에서 Hungarian과 동일한 objective를 냈습니다. 이는 단순화된 assignment 제약의 LP relaxation이 integral extreme point를 갖는다는 예상과 일치합니다.
-
-| 사용자 수 | Hungarian quality | Greedy gap | Hybrid gap | best entropy projection gap | LP gap |
-|---:|---:|---:|---:|---:|---:|
-| 10 | 0.9855 | 35.31% | 30.60% | 0.02% | 0.00% |
-| 15 | 0.9144 | 15.81% | 7.64% | 121.58% | 0.00% |
-| 20 | 0.7793 | 5.37% | 3.44% | 59.73% | 0.00% |
-| 30 | 0.5831 | 1.49% | 0.73% | 17.94% | 0.00% |
-| 50 | 0.3904 | 0.57% | 0.33% | 13.10% | 0.00% |
-| 80 | 0.2462 | 0.34% | 0.08% | 5.79% | 0.00% |
-
-`Hybrid-Score-Greedy`는 사용자 수가 15 이상인 대부분의 구간에서 기존 `Greedy-Cost`보다 gap을 줄였습니다. 특히 `U=80`에서는 gap이 `0.34%`에서 `0.08%`로 감소했습니다.
-
-### RB 수 sweep
-
-`U=15`로 고정했을 때 RB 수가 증가하면 Hungarian의 FL quality는 `R=5`의 0.4810에서 `R=20`의 0.9852로 증가했습니다. convergence-gap objective도 875.75에서 23.11로 감소했습니다.
-
-| RB 수 | Hungarian quality | Hungarian convergence gap | Greedy gap | Hybrid gap | best entropy projection gap | LP gap |
-|---:|---:|---:|---:|---:|---:|---:|
-| 5 | 0.4810 | 875.75 | 1.37% | 0.84% | 11.09% | 0.00% |
-| 9 | 0.7791 | 334.68 | 4.59% | 4.68% | 34.98% | 0.00% |
-| 12 | 0.8911 | 177.10 | 7.41% | 8.28% | 54.87% | 0.00% |
-| 15 | 0.9821 | 28.22 | 89.39% | 39.79% | 0.08% | 0.00% |
-| 20 | 0.9852 | 23.11 | 18.91% | 16.91% | 0.12% | 0.00% |
-
-`Entropy-Relax+Projection`은 RB가 충분한 `R=15,20`에서는 매우 좋은 성능을 보였습니다. 예를 들어 `R=15`에서 기존 greedy gap은 89.39%였지만, `Entropy-Relax(tau=0.3)+Projection`은 0.08%까지 낮아졌습니다. 반면 RB가 부족하거나 중간 규모인 `R=9,12`에서는 projection이 여전히 큰 gap을 보였습니다.
-
-## 평가
-
-첫째, `LP-Relax+Projection`은 모든 sweep point에서 Hungarian과 동일한 objective를 냈습니다. 따라서 현재처럼 `P*_{i,n}`과 `qhat_{i,n}`을 고정한 선형 assignment 문제에서는 LP relaxation이 성능상 손실 없는 대안입니다. 다만 평균 runtime은 4.588 ms로 Hungarian의 0.125 ms보다 느려서, 속도 개선 방법으로 보기는 어렵습니다.
-
-둘째, 추가한 방법 중 가장 안정적으로 개선된 것은 `Hybrid-Score-Greedy(alpha=0.25)`입니다. 평균 objective gap이 기존 `Greedy-Cost`의 16.41%에서 10.30%로 감소했고, 평균 FL quality도 0.7213에서 0.7238로 상승했습니다. runtime은 2.788 ms로 greedy보다 느리지만 LP보다 빠릅니다.
-
-셋째, `Entropy-Relax+Projection`은 특정 조건에서 강력하지만 안정적이지 않습니다. RB가 충분한 경우에는 Hungarian에 거의 근접하지만, 사용자 수 sweep의 `U=15`와 같은 일부 설정에서는 gap이 121.58%까지 커졌습니다. 즉 projection만 붙인다고 항상 성능이 보장되지는 않으며, soft matrix와 원래 cost를 함께 고려하는 projection이 필요합니다.
-
-결론적으로, 현재 실험 기준에서 추천 순서는 다음과 같습니다.
-
-1. 정확도가 가장 중요하면 `Hungarian` 또는 `LP-Relax+Projection`.
-2. hard matching 없이 빠른 근사와 품질 절충이 필요하면 `Hybrid-Score-Greedy(alpha=0.25)`.
-3. differentiable soft allocation이 연구 목적이라면 `Entropy-Relax+Projection`을 쓰되, cost-aware projection으로 추가 개선해야 합니다.
-
-## Continuous Soft Allocation 실험
-
-위 결과는 모두 최종적으로 0/1 hard assignment를 복원하는 실험입니다. 추가 실험에서는 기존 결과를 유지한 채, soft allocation 자체를 허용하는 별도 convex pipeline을 구성했습니다. 비교 대상은 다음과 같습니다.
-
-- `Hungarian(reference)`: hard matching 기준선. soft 실험의 objective gap 기준으로만 사용합니다.
-- `Continuous-LP(HiGHS)`: 선형 objective와 선형 assignment 제약을 그대로 `0 <= X <= 1`에서 풉니다. 이는 convex LP입니다.
-- `Soft-Entropy-KKT(tau=1,5,25)`: linear objective에 convex entropy regularizer를 더한 문제를 풉니다. 최종 `X`를 rounding하지 않으므로 실제 soft allocation입니다.
-
-entropy-KKT 문제는 다음 형태입니다.
+- LP relaxation
+  - `x_{i,n} in [0,1]`, row/column assignment constraint를 갖는 convex LP입니다.
+  - 구현: `scipy.optimize.linprog(method="highs")`.
+- Hungarian matching
+  - hard assignment 기준선입니다.
+  - 구현: `scipy.optimize.linear_sum_assignment`.
+- Matching projection
+  - soft/relaxed matrix를 다시 feasible 0/1 assignment로 복원합니다.
+- Entropy regularization
+  - soft allocation을 만들기 위해 다음 convex surrogate를 사용합니다.
 
 ```text
 min_X <C, X> + tau * sum_{i,n} x_{i,n}(log x_{i,n} - 1)
 s.t.  sum_n x_{i,n} <= 1,  sum_i x_{i,n} <= 1,  x_{i,n} >= 0
 ```
 
-부등식 제약은 dummy user/RB를 추가해 balanced equality scaling 문제로 바꾸었습니다. KKT stationarity는 다음 Gibbs/Sinkhorn 형태를 갖습니다.
+- KKT/Sinkhorn scaling
+  - dummy user/RB를 추가해 부등식 제약을 balanced scaling 문제로 바꿉니다.
+  - KKT stationarity는 다음 형태입니다.
 
 ```text
 x_{i,n} = u_i * exp(-C_{i,n} / tau) * v_n
 ```
 
-따라서 `Soft-Entropy-KKT`는 일반 nonlinear solver를 호출하지 않고, KKT 조건에서 유도한 Sinkhorn scaling으로 풉니다. `Continuous-LP(HiGHS)`만 `scipy.optimize.linprog(method="highs")`를 사용합니다.
+  - `Soft-Entropy-KKT`는 이 식을 기반으로 Sinkhorn iteration을 수행합니다.
+  - 일반 nonlinear solver는 사용하지 않았습니다.
 
-시각적 plot:
+### 기존 방법과의 차이점
 
-- [continuous objective gap](results/continuous/plots/soft_objective_gap_by_users.svg)
-- [fractional mass ratio](results/continuous/plots/fractional_mass_by_users.svg)
-- [continuous runtime](results/continuous/plots/soft_runtime_by_users.svg)
+| 구분 | 베이스 논문 | Hard 복원 실험 | Continuous soft 실험 |
+|---|---|---|---|
+| 최종 allocation | 0/1 hard | 0/1 hard | `[0,1]` soft |
+| 핵심 solver | Hungarian | LP, entropy, greedy, projection | LP, KKT/Sinkhorn |
+| convex성 | matching 단계는 combinatorial | relaxation 단계만 convex 가능 | soft allocation을 인정하면 convex pipeline 가능 |
+| 목적 | 논문 기준선 재현 | relaxation 후 hard 복원 품질 평가 | hard 복원 없이 soft allocation 자체 평가 |
+| 주요 리스크 | binary 제약 | rounding/projection 손실 | 실제 시스템이 soft/time-sharing을 허용해야 함 |
 
-### Continuous 전체 평균
+## Part 2. 실험과 평가
 
-`--seeds 5` 실행 결과 `raw_results.csv` 275개 row, `summary.csv` 55개 row가 생성되었습니다.
+### 실험 실행 방법
 
-| 방법 | Hungarian 대비 평균 linear gap | 최악 평균 gap | 평균 fractional mass ratio | 평균 KKT residual | 평균 runtime | 평균 FL quality |
+- 전체 테스트
+
+```powershell
+python -m unittest discover -v
+```
+
+- Hard assignment 복원 실험
+
+```powershell
+python run_experiments.py --output results --seeds 5
+```
+
+- Continuous soft allocation 실험
+
+```powershell
+python run_continuous_experiments.py --output results/continuous --seeds 5
+```
+
+- 빠른 smoke run
+
+```powershell
+python run_experiments.py --output results_quick --seeds 2 --quick
+python run_continuous_experiments.py --output results_continuous_quick --seeds 2 --quick
+```
+
+- 주요 결과 파일
+  - `results/raw_results.csv`
+  - `results/summary.csv`
+  - `results/continuous/raw_results.csv`
+  - `results/continuous/summary.csv`
+- 주요 plot
+  - [hard objective gap](results/plots/objective_gap_by_users.svg)
+  - [hard runtime](results/plots/runtime_by_users.svg)
+  - [hard convergence gap](results/plots/convergence_gap_by_rbs.svg)
+  - [continuous objective gap](results/continuous/plots/soft_objective_gap_by_users.svg)
+  - [continuous fractional mass](results/continuous/plots/fractional_mass_by_users.svg)
+  - [continuous runtime](results/continuous/plots/soft_runtime_by_users.svg)
+
+### 실험 환경
+
+- 실행 환경
+  - OS: Windows 11 `10.0.26200`
+  - CPU: Intel Core Ultra 5 226V, 8 cores / 8 logical processors
+  - Memory: 약 16 GB
+  - GPU: 사용하지 않음
+- Python 및 의존성
+  - Python `3.14.0`
+  - NumPy `2.4.3`
+  - SciPy `1.17.1`
+- 공통 실험 파라미터
+  - seeds: `5`
+  - 사용자 수 sweep: `U = [10, 15, 20, 30, 50, 80]`, `R = 12`
+  - RB 수 sweep: `R = [5, 9, 12, 15, 20]`, `U = 15`
+- 결과 규모
+  - Hard 복원 실험: `raw_results.csv` 550 rows, `summary.csv` 110 rows.
+  - Continuous soft 실험: `raw_results.csv` 275 rows, `summary.csv` 55 rows.
+
+### 실험 결과
+
+- Hard assignment 복원 실험 핵심 결과
+
+| 방법 | 평균 objective gap | 최악 평균 gap | 평균 runtime | 평균 FL quality |
+|---|---:|---:|---:|---:|
+| `Hungarian` | 0.00% | 0.00% | 0.093 ms | 0.7288 |
+| `LP-Relax+Projection` | 0.00% | 0.00% | 6.580 ms | 0.7288 |
+| `Hybrid-Score-Greedy(alpha=0.25)` | 10.30% | 39.79% | 2.788 ms | 0.7238 |
+| `Greedy-Cost` | 16.41% | 89.39% | 0.225 ms | 0.7213 |
+| `Entropy-Relax(tau=0.8)+Projection` | 30.20% | 121.58% | 5.735 ms | 0.6710 |
+| `Entropy-Relax(tau=0.3)+Greedy` | 34.25% | 90.19% | 5.367 ms | 0.6720 |
+
+- Continuous soft allocation 실험 핵심 결과
+
+| 방법 | 평균 linear gap | 최악 평균 gap | fractional mass ratio | 평균 KKT residual | 평균 runtime | 평균 FL quality |
 |---|---:|---:|---:|---:|---:|---:|
 | `Hungarian(reference)` | 0.00% | 0.00% | 0.0000 | 0.000e+00 | 0.051 ms | 0.7281 |
 | `Continuous-LP(HiGHS)` | 0.00% | 0.00% | 0.0000 | 0.000e+00 | 2.887 ms | 0.7281 |
@@ -177,12 +191,43 @@ x_{i,n} = u_i * exp(-C_{i,n} / tau) * v_n
 | `Soft-Entropy-KKT(tau=5)` | 48.83% | 211.22% | 1.0000 | 3.417e-11 | 0.992 ms | 0.7125 |
 | `Soft-Entropy-KKT(tau=25)` | 250.57% | 975.23% | 1.0000 | 6.293e-12 | 0.261 ms | 0.6343 |
 
-### Continuous sweep 해석
+### 결과 평가 및 기존 방법과의 결과 비교
 
-`Continuous-LP(HiGHS)`는 모든 사용자 수/RB 수 sweep에서 Hungarian과 같은 objective를 냈습니다. 이는 현재처럼 `P*_{i,n}`과 `qhat_{i,n}`을 상수로 고정한 선형 assignment polytope가 integral extreme point를 갖기 때문입니다. 따라서 LP relaxation은 convex이지만, 결과적으로는 soft allocation이 아니라 Hungarian과 동등한 hard allocation으로 수렴합니다.
+- `LP-Relax+Projection`
+  - Hungarian 대비 평균 gap이 `0.00%`입니다.
+  - 현재 선형 assignment 구조에서는 LP relaxation이 성능 손실 없이 hard optimum을 복원합니다.
+  - 단, 평균 runtime은 `6.580 ms`로 Hungarian의 `0.093 ms`보다 큽니다.
+- `Hybrid-Score-Greedy(alpha=0.25)`
+  - `Greedy-Cost` 대비 평균 gap을 `16.41% -> 10.30%`로 줄였습니다.
+  - 평균 FL quality도 `0.7213 -> 0.7238`로 개선되었습니다.
+  - hard 복원이 필요하고 Hungarian/LP보다 가벼운 근사가 필요할 때 가장 실용적인 대안입니다.
+- `Entropy-Relax+Projection`
+  - RB가 충분한 일부 조건에서는 Hungarian에 매우 근접합니다.
+  - 전체 평균 기준으로는 gap이 `30%` 이상이라 안정적이지 않습니다.
+  - soft matrix만 믿고 projection하면 원래 cost 구조를 충분히 반영하지 못할 수 있습니다.
+- `Continuous-LP(HiGHS)`
+  - convex LP이지만 fractional allocation을 만들지 못했습니다.
+  - fractional mass ratio가 `0.0000`이므로 결과적으로 Hungarian과 같은 hard extreme point로 수렴했습니다.
+- `Soft-Entropy-KKT(tau=1)`
+  - fractional mass ratio가 `1.0000`이므로 실제 continuous soft allocation입니다.
+  - 평균 linear gap은 `10.28%`이지만 FL quality는 `0.7254`로 Hungarian reference의 `0.7281`에 가깝습니다.
+  - soft/time-sharing allocation을 시스템적으로 허용한다면 가장 의미 있는 convex continuous 대안입니다.
+- `tau` 영향
+  - `tau=1`: 품질과 softness의 균형이 가장 좋습니다.
+  - `tau=5`: smoothing 증가로 평균 gap이 `48.83%`까지 증가합니다.
+  - `tau=25`: allocation이 과도하게 퍼져 평균 gap이 `250.57%`로 악화됩니다.
 
-`Soft-Entropy-KKT(tau=1)`은 fractional mass ratio가 평균 1.0000으로, 최종 allocation이 거의 전부 fractional입니다. 평균 linear gap은 10.28%였지만 FL quality는 0.7254로 Hungarian의 0.7281에 가깝게 유지되었습니다. 사용자 수가 많아져 RB 경쟁이 완화되는 구간에서는 gap이 크게 줄었습니다. 예를 들어 `U=80, R=12`에서는 gap이 0.09%, FL quality가 0.2426으로 Hungarian의 0.2433과 거의 동일했습니다.
+### 한계점 및 추후 계획
 
-반대로 RB가 매우 충분한 구간에서는 entropy smoothing의 비용이 커집니다. `U=15, R=20`에서 `tau=1`의 gap은 52.48%였고, `tau=5`와 `tau=25`는 각각 211.22%, 975.23%까지 증가했습니다. 이는 optimum이 소수의 매우 좋은 RB에 집중되는 상황에서 entropy가 mass를 넓게 분산시키기 때문입니다.
-
-결론적으로, 전체 파이프라인을 convex continuous optimization으로 유지하려면 최종 soft allocation을 time-sharing 또는 probabilistic allocation으로 인정해야 합니다. 이 경우 `Soft-Entropy-KKT(tau=1)`이 가장 합리적인 절충점입니다. 반면 실제 시스템이 반드시 0/1 RB 할당을 요구하면 rounding/projection 단계가 다시 필요하며, 그 순간 전체 파이프라인은 완전한 convex optimization만으로 닫히지 않습니다.
+- 한계점
+  - `P*_{i,n}`과 `qhat_{i,n}`을 상수로 고정했기 때문에 전력 제어와 allocation의 joint optimization은 아직 다루지 않았습니다.
+  - LP relaxation은 convex이지만 assignment polytope 특성상 soft solution을 보장하지 않습니다.
+  - Soft allocation은 실제 무선 시스템이 time-sharing 또는 probabilistic RB allocation을 허용해야 적용 가능합니다.
+  - Hard 복원이 필요한 경우 rounding/projection 단계 때문에 전체 파이프라인은 완전한 convex optimization으로 닫히지 않습니다.
+  - 현재 실험은 synthetic channel/problem generator 기반이며 실제 wireless trace 검증은 포함하지 않았습니다.
+- 추후 계획
+  - 전력 변수까지 포함한 convex surrogate 또는 alternating convex optimization 확장.
+  - entropy-KKT의 `tau` adaptive scheduling 및 residual 기반 stopping rule 개선.
+  - cost-aware projection을 강화해 `Entropy-Relax+Projection`의 불안정성 완화.
+  - soft allocation을 time-sharing 정책으로 해석한 실제 round-level FL simulation 추가.
+  - 실제 channel/RB trace 기반 robustness 평가 추가.
