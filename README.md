@@ -52,7 +52,7 @@ min_X sum_i K_i (1 - sum_n x_{i,n} + sum_n x_{i,n} qhat_{i,n})
 ### 아이디어의 구조/아키텍처 설명
 
 - 데이터 생성
-  - `src/relaxed_ra/problem.py`: 사용자 수, RB 수, channel gain, sample count, packet error matrix 생성.
+  - `src/relaxed_ra/instance.py`: 사용자 수, RB 수, channel gain, sample count, packet error matrix 생성.
 - Solver 계층
   - `Hungarian`: 논문식 hard matching 기준선.
   - `LP-Relax+Projection`: LP relaxation 후 matching projection.
@@ -61,9 +61,13 @@ min_X sum_i K_i (1 - sum_n x_{i,n} + sum_n x_{i,n} qhat_{i,n})
   - `Hybrid-Score-Greedy`: soft score와 원래 cost utility를 혼합한 greedy 복원.
   - `Continuous-LP(HiGHS)`: `X in [0,1]` LP를 solver로 직접 풂.
   - `Soft-Entropy-KKT`: entropy-regularized convex 문제를 KKT/Sinkhorn scaling으로 풂.
+- Paper-style 재현 계층
+  - 논문 Fig.4-Fig.10의 실험 축을 따라 linear regression loss, matching work, convergence gap, digit accuracy를 평가합니다.
+  - 논문 baseline 3종과 새 relaxation baseline 4종을 같은 FL loop에 적용합니다.
 - 실험 실행
   - `run_experiments.py`: hard assignment 복원 실험.
   - `run_continuous_experiments.py`: continuous soft allocation 실험.
+  - `run_paper_reproduction.py`: 논문 figure 구조를 따른 세 번째 비교 실험.
 - 산출물
   - CSV: raw result와 summary.
   - SVG plot: objective gap, runtime, fractional mass ratio.
@@ -107,6 +111,15 @@ x_{i,n} = u_i * exp(-C_{i,n} / tau) * v_n
 | 목적 | 논문 기준선 재현 | relaxation 후 hard 복원 품질 평가 | hard 복원 없이 soft allocation 자체 평가 |
 | 주요 리스크 | binary 제약 | rounding/projection 손실 | 실제 시스템이 soft/time-sharing을 허용해야 함 |
 
+세 번째 실험에서는 논문 baseline을 다음 이름으로 구현했습니다.
+
+- `Paper-Hungarian`: 논문 제안 방식의 Hungarian RB/user assignment.
+- `Paper-OptUser-RandomRB`: user selection은 cost 기준으로 고르되 RB는 random으로 제한.
+- `Paper-RandomUserRB`: user selection과 RB allocation을 모두 random으로 결정.
+- `Paper-Wireless-PER`: FL sample 수를 무시하고 packet error rate만 최소화.
+
+추가 비교군은 `LP-Relax+Projection`, `Hybrid-Score-Greedy(alpha=0.25)`, `Continuous-LP(HiGHS)`, `Soft-Entropy-KKT(tau=1)`입니다.
+
 ## Part 2. 실험과 평가
 
 ### 실험 실행 방법
@@ -129,11 +142,18 @@ python run_experiments.py --output results --seeds 5
 python run_continuous_experiments.py --output results/continuous --seeds 5
 ```
 
+- Paper-style 재현 실험
+
+```powershell
+python run_paper_reproduction.py --output results/paper --seeds 3
+```
+
 - 빠른 smoke run
 
 ```powershell
 python run_experiments.py --output results_quick --seeds 2 --quick
 python run_continuous_experiments.py --output results_continuous_quick --seeds 2 --quick
+python run_paper_reproduction.py --output results_paper_quick --seeds 1 --quick
 ```
 
 - 주요 결과 파일
@@ -141,6 +161,8 @@ python run_continuous_experiments.py --output results_continuous_quick --seeds 2
   - `results/summary.csv`
   - `results/continuous/raw_results.csv`
   - `results/continuous/summary.csv`
+  - `results/paper/paper_raw_results.csv`
+  - `results/paper/paper_summary.csv`
 - 주요 plot
   - [hard objective gap](results/plots/objective_gap_by_users.svg)
   - [hard runtime](results/plots/runtime_by_users.svg)
@@ -148,6 +170,13 @@ python run_continuous_experiments.py --output results_continuous_quick --seeds 2
   - [continuous objective gap](results/continuous/plots/soft_objective_gap_by_users.svg)
   - [continuous fractional mass](results/continuous/plots/fractional_mass_by_users.svg)
   - [continuous runtime](results/continuous/plots/soft_runtime_by_users.svg)
+  - [paper Fig.4-style linear loss](results/paper/plots/paper_fig4_linear_loss_by_samples.svg)
+  - [paper Fig.5-style matching work](results/paper/plots/paper_fig5_matching_work_by_users.svg)
+  - [paper Fig.6-style convergence gap](results/paper/plots/paper_fig6_convergence_gap_by_users.svg)
+  - [paper Fig.7-style digit accuracy by iterations](results/paper/plots/paper_fig7_digit_accuracy_by_iterations.svg)
+  - [paper Fig.8-style digit accuracy by users](results/paper/plots/paper_fig8_digit_accuracy_by_users.svg)
+  - [paper Fig.9-style digit accuracy by RBs](results/paper/plots/paper_fig9_digit_accuracy_by_rbs.svg)
+  - [paper Fig.10-style digit examples](results/paper/plots/paper_fig10_digit_examples.svg)
 
 ### 실험 환경
 
@@ -160,13 +189,26 @@ python run_continuous_experiments.py --output results_continuous_quick --seeds 2
   - Python `3.14.0`
   - NumPy `2.4.3`
   - SciPy `1.17.1`
+  - scikit-learn `1.8.0`: `load_digits`, `train_test_split` 사용
 - 공통 실험 파라미터
   - seeds: `5`
   - 사용자 수 sweep: `U = [10, 15, 20, 30, 50, 80]`, `R = 12`
   - RB 수 sweep: `R = [5, 9, 12, 15, 20]`, `U = 15`
+- Paper-style 실험 파라미터
+  - seeds: `3`
+  - 사용자 수 sweep: `U = [10, 12, 15, 18, 20]`, `R = 12`
+  - RB 수 sweep: `R = [5, 9, 12, 15, 20]`, `U = 15`
+  - samples per user sweep: `[10, 20, 30, 40, 60]`
+  - digit FL rounds: `12`
 - 결과 규모
   - Hard 복원 실험: `raw_results.csv` 550 rows, `summary.csv` 110 rows.
   - Continuous soft 실험: `raw_results.csv` 275 rows, `summary.csv` 55 rows.
+  - Paper-style 재현 실험: `paper_raw_results.csv` 768 rows, `paper_summary.csv` 256 rows.
+- Paper-style 재현 범위
+  - 논문과 같은 figure 축을 사용합니다: sample 수, 사용자 수, RB 수, FL iteration.
+  - Linear regression은 논문식 `y = -2x + 1 + 0.4n` 데이터를 사용합니다.
+  - 원 논문은 Matlab FNN과 MNIST를 사용하지만, 현재 repo는 재현 가능성을 위해 NumPy softmax FL과 scikit-learn digits 데이터를 사용합니다.
+  - 따라서 이 결과는 논문 수치의 완전 복제가 아니라, 논문 실험 구조에 relaxation baseline을 추가한 paper-style reproduction입니다.
 
 ### 실험 결과
 
@@ -190,6 +232,24 @@ python run_continuous_experiments.py --output results_continuous_quick --seeds 2
 | `Soft-Entropy-KKT(tau=1)` | 10.28% | 52.48% | 1.0000 | 1.918e-04 | 3.257 ms | 0.7254 |
 | `Soft-Entropy-KKT(tau=5)` | 48.83% | 211.22% | 1.0000 | 3.417e-11 | 0.992 ms | 0.7125 |
 | `Soft-Entropy-KKT(tau=25)` | 250.57% | 975.23% | 1.0000 | 6.293e-12 | 0.261 ms | 0.6343 |
+
+- Paper-style 재현 실험 핵심 결과
+
+| 실험 축 | 최고/주요 방법 | 핵심 수치 | Paper-Hungarian 기준 |
+|---|---|---:|---:|
+| Fig.4-style linear MSE 평균 | `Soft-Entropy-KKT(tau=1)` | 0.00139 | `Paper-Hungarian` 0.00187 |
+| Fig.4-style linear MSE 평균 | `Hybrid-Score-Greedy(alpha=0.25)` | 0.00151 | `Paper-Hungarian` 0.00187 |
+| Fig.6-style normalized convergence gap | `Paper-Hungarian` / `LP-Relax+Projection` / `Continuous-LP(HiGHS)` | 0.10670 | 동일 |
+| Fig.7-style final digit accuracy, 12 rounds | `Soft-Entropy-KKT(tau=1)` | 0.8776 | `Paper-Hungarian` 0.7970 |
+| Fig.8-style digit accuracy by users 평균 | `Soft-Entropy-KKT(tau=1)` | 0.8773 | `Paper-Hungarian` 0.8251 |
+| Fig.9-style digit accuracy by RBs 평균 | `Soft-Entropy-KKT(tau=1)` | 0.8404 | `Paper-Hungarian` 0.7663 |
+
+논문 baseline이 강조한 조건도 별도로 확인했습니다.
+
+| 조건 | `Paper-Hungarian` | 논문 baseline 중 최고 | 추가 baseline 중 최고 |
+|---|---:|---:|---:|
+| Fig.8-style `U=18, R=12` digit accuracy | 0.8198 | `Paper-Wireless-PER` 0.8362 | `Soft-Entropy-KKT(tau=1)` 0.8511 |
+| Fig.9-style `U=15, R=9` digit accuracy | 0.7292 | `Paper-RandomUserRB` 0.7329 | `Soft-Entropy-KKT(tau=1)` 0.8299 |
 
 ### 결과 평가 및 기존 방법과의 결과 비교
 
@@ -216,6 +276,12 @@ python run_continuous_experiments.py --output results_continuous_quick --seeds 2
   - `tau=1`: 품질과 softness의 균형이 가장 좋습니다.
   - `tau=5`: smoothing 증가로 평균 gap이 `48.83%`까지 증가합니다.
   - `tau=25`: allocation이 과도하게 퍼져 평균 gap이 `250.57%`로 악화됩니다.
+- Paper-style 재현 실험
+  - `Paper-Hungarian`, `LP-Relax+Projection`, `Continuous-LP(HiGHS)`는 normalized convergence gap에서 같은 값 `0.10670`을 냈습니다. 이는 선형 assignment relaxation이 hard extreme point로 수렴한다는 앞선 결과와 일치합니다.
+  - `Soft-Entropy-KKT(tau=1)`은 digit accuracy에서 가장 높았습니다. 평균 accuracy는 사용자 수 sweep에서 `0.8773`, RB 수 sweep에서 `0.8404`입니다.
+  - 이 개선은 soft allocation이 여러 사용자의 업데이트를 fractional하게 반영해 gradient 다양성을 높인 효과로 해석됩니다.
+  - 단, 실제 RB가 반드시 0/1 hard allocation이어야 한다면 이 이점은 time-sharing 또는 probabilistic scheduling 계층이 있을 때만 실현 가능합니다.
+  - `Paper-OptUser-RandomRB`는 대부분의 축에서 가장 낮았습니다. RB를 random으로 제한하면 user selection을 개선해도 feasible/high-quality edge를 놓치는 손실이 큽니다.
 
 ### 한계점 및 추후 계획
 
@@ -225,9 +291,12 @@ python run_continuous_experiments.py --output results_continuous_quick --seeds 2
   - Soft allocation은 실제 무선 시스템이 time-sharing 또는 probabilistic RB allocation을 허용해야 적용 가능합니다.
   - Hard 복원이 필요한 경우 rounding/projection 단계 때문에 전체 파이프라인은 완전한 convex optimization으로 닫히지 않습니다.
   - 현재 실험은 synthetic channel/problem generator 기반이며 실제 wireless trace 검증은 포함하지 않았습니다.
+  - Paper-style 재현 실험은 논문 figure 구조를 따르지만, Matlab FNN/MNIST 원본 실험을 bitwise 또는 수치적으로 완전 복제한 것은 아닙니다.
+  - Fig.5의 Hungarian iteration은 SciPy가 내부 iteration을 제공하지 않아 solver work proxy로 대체했습니다.
 - 추후 계획
   - 전력 변수까지 포함한 convex surrogate 또는 alternating convex optimization 확장.
   - entropy-KKT의 `tau` adaptive scheduling 및 residual 기반 stopping rule 개선.
   - cost-aware projection을 강화해 `Entropy-Relax+Projection`의 불안정성 완화.
   - soft allocation을 time-sharing 정책으로 해석한 실제 round-level FL simulation 추가.
   - 실제 channel/RB trace 기반 robustness 평가 추가.
+  - torchvision/MNIST 또는 원 논문 Matlab 설정을 사용할 수 있는 환경에서 paper-style 실험을 full MNIST/FNN reproduction으로 확장.
