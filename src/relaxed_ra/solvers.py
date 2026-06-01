@@ -5,8 +5,8 @@ import time
 import numpy as np
 from scipy.optimize import linear_sum_assignment, linprog
 
-from .metrics import evaluate_assignment
-from .models import AllocationResult, ProblemInstance
+from .metrics import evaluate_assignment, evaluate_soft_assignment
+from .models import AllocationResult, ProblemInstance, SoftAllocationResult
 
 
 def _empty_assignment(instance: ProblemInstance) -> np.ndarray:
@@ -197,4 +197,105 @@ def solve_hybrid_score_greedy(
         elapsed,
         soft_assignment=soft,
         details={"alpha": alpha, "tau": tau, "iterations": iterations},
+    )
+
+
+def solve_soft_lp(instance: ProblemInstance) -> SoftAllocationResult:
+    start = time.perf_counter()
+    u_count, r_count = instance.user_count, instance.rb_count
+    n_vars = u_count * r_count
+    c = instance.cost.reshape(-1)
+
+    a_ub: list[np.ndarray] = []
+    b_ub: list[float] = []
+    for i in range(u_count):
+        row = np.zeros(n_vars)
+        row[i * r_count : (i + 1) * r_count] = 1.0
+        a_ub.append(row)
+        b_ub.append(1.0)
+    for n in range(r_count):
+        col = np.zeros(n_vars)
+        col[n::r_count] = 1.0
+        a_ub.append(col)
+        b_ub.append(1.0)
+
+    bounds = [(0.0, 1.0) if feasible else (0.0, 0.0) for feasible in instance.feasible.reshape(-1)]
+    result = linprog(
+        c,
+        A_ub=np.vstack(a_ub),
+        b_ub=np.asarray(b_ub),
+        bounds=bounds,
+        method="highs",
+    )
+    if not result.success:
+        raise RuntimeError(f"continuous LP failed: {result.message}")
+
+    soft = result.x.reshape(u_count, r_count)
+    elapsed = time.perf_counter() - start
+    return evaluate_soft_assignment(
+        instance,
+        soft,
+        "Continuous-LP(HiGHS)",
+        elapsed,
+        details={"lp_objective": float(result.fun), "linprog_status": int(result.status)},
+    )
+
+
+def solve_soft_entropy_kkt(
+    instance: ProblemInstance,
+    tau: float = 75.0,
+    iterations: int = 1_000,
+    tolerance: float = 1e-10,
+) -> SoftAllocationResult:
+    start = time.perf_counter()
+    if tau <= 0:
+        raise ValueError("tau must be positive")
+
+    u_count, r_count = instance.user_count, instance.rb_count
+    size = u_count + r_count
+    kernel = np.ones((size, size), dtype=float)
+    real_kernel = np.zeros((u_count, r_count), dtype=float)
+    real_kernel[instance.feasible] = np.exp(np.clip(-instance.cost[instance.feasible] / tau, -700.0, 700.0))
+    kernel[:u_count, :r_count] = real_kernel
+
+    left_scale = np.ones(size, dtype=float)
+    right_scale = np.ones(size, dtype=float)
+    residual = float("inf")
+    for _ in range(iterations):
+        left_denom = kernel @ right_scale
+        left_scale = 1.0 / np.maximum(left_denom, 1e-300)
+        right_denom = kernel.T @ left_scale
+        right_scale = 1.0 / np.maximum(right_denom, 1e-300)
+        if _ % 20 == 0:
+            plan = left_scale[:, None] * kernel * right_scale[None, :]
+            residual = max(
+                float(np.max(np.abs(plan.sum(axis=1) - 1.0))),
+                float(np.max(np.abs(plan.sum(axis=0) - 1.0))),
+            )
+            if residual < tolerance:
+                break
+
+    plan = left_scale[:, None] * kernel * right_scale[None, :]
+    residual = max(
+        float(np.max(np.abs(plan.sum(axis=1) - 1.0))),
+        float(np.max(np.abs(plan.sum(axis=0) - 1.0))),
+    )
+    soft = plan[:u_count, :r_count]
+    linear_objective = float(instance.total_samples + np.sum(instance.cost * soft))
+    entropy_term = float(np.sum(plan * (np.log(np.maximum(plan, 1e-300)) - 1.0)))
+    entropy_objective = linear_objective + tau * entropy_term
+    elapsed = time.perf_counter() - start
+    return evaluate_soft_assignment(
+        instance,
+        soft,
+        f"Soft-Entropy-KKT(tau={tau:g})",
+        elapsed,
+        entropy_objective=entropy_objective,
+        kkt_residual=residual,
+        details={
+            "tau": tau,
+            "iterations": iterations,
+            "augmented_size": size,
+            "entropy_term": entropy_term,
+        },
     )

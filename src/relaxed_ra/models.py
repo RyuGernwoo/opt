@@ -38,3 +38,19 @@ class AllocationResult:
     fl_quality: float
     runtime_seconds: float
     details: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class SoftAllocationResult:
+    method: str
+    soft_assignment: np.ndarray
+    linear_objective: float
+    entropy_objective: float
+    soft_mass: float
+    expected_successful_samples: float
+    mean_packet_error: float
+    fl_quality: float
+    fractional_mass_ratio: float
+    kkt_residual: float
+    runtime_seconds: float
+    details: dict[str, Any] = field(default_factory=dict)

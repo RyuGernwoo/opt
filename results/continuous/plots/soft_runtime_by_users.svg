@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="90" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="700">Continuous Soft Runtime by Users</text>
+<line x1="90" y1="475" x2="670" y2="475" stroke="#222" stroke-width="1.2"/>
+<line x1="90" y1="55" x2="90" y2="475" stroke="#222" stroke-width="1.2"/>
+<line x1="90" y1="475.00" x2="670" y2="475.00" stroke="#e5e5e5"/>
+<text x="78" y="479.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0</text>
+<line x1="90" y1="391.00" x2="670" y2="391.00" stroke="#e5e5e5"/>
+<text x="78" y="395.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.00122</text>
+<line x1="90" y1="307.00" x2="670" y2="307.00" stroke="#e5e5e5"/>
+<text x="78" y="311.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.00245</text>
+<line x1="90" y1="223.00" x2="670" y2="223.00" stroke="#e5e5e5"/>
+<text x="78" y="227.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.00367</text>
+<line x1="90" y1="139.00" x2="670" y2="139.00" stroke="#e5e5e5"/>
+<text x="78" y="143.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.0049</text>
+<line x1="90" y1="55.00" x2="670" y2="55.00" stroke="#e5e5e5"/>
+<text x="78" y="59.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.00612</text>
+<line x1="90.00" y1="475" x2="90.00" y2="480" stroke="#222"/>
+<text x="90.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">10</text>
+<line x1="131.43" y1="475" x2="131.43" y2="480" stroke="#222"/>
+<text x="131.43" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">15</text>
+<line x1="172.86" y1="475" x2="172.86" y2="480" stroke="#222"/>
+<text x="172.86" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">20</text>
+<line x1="255.71" y1="475" x2="255.71" y2="480" stroke="#222"/>
+<text x="255.71" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">30</text>
+<line x1="421.43" y1="475" x2="421.43" y2="480" stroke="#222"/>
+<text x="421.43" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">50</text>
+<line x1="670.00" y1="475" x2="670.00" y2="480" stroke="#222"/>
+<text x="670.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">80</text>
+<polyline points="90.00,304.98 131.43,331.47 172.86,281.40 255.71,282.40 421.43,184.89 670.00,86.11" fill="none" stroke="#1f77b4" stroke-width="2.4"/>
+<circle cx="90.00" cy="304.98" r="3.5" fill="#1f77b4"/>
+<circle cx="131.43" cy="331.47" r="3.5" fill="#1f77b4"/>
+<circle cx="172.86" cy="281.40" r="3.5" fill="#1f77b4"/>
+<circle cx="255.71" cy="282.40" r="3.5" fill="#1f77b4"/>
+<circle cx="421.43" cy="184.89" r="3.5" fill="#1f77b4"/>
+<circle cx="670.00" cy="86.11" r="3.5" fill="#1f77b4"/>
+<line x1="705" y1="79" x2="728" y2="79" stroke="#1f77b4" stroke-width="3"/>
+<text x="736" y="83" font-family="Arial, sans-serif" font-size="12">Continuous-LP(HiGHS)</text>
+<polyline points="90.00,472.37 131.43,471.81 172.86,469.92 255.71,471.34 421.43,470.89 670.00,470.06" fill="none" stroke="#d62728" stroke-width="2.4"/>
+<circle cx="90.00" cy="472.37" r="3.5" fill="#d62728"/>
+<circle cx="131.43" cy="471.81" r="3.5" fill="#d62728"/>
+<circle cx="172.86" cy="469.92" r="3.5" fill="#d62728"/>
+<circle cx="255.71" cy="471.34" r="3.5" fill="#d62728"/>
+<circle cx="421.43" cy="470.89" r="3.5" fill="#d62728"/>
+<circle cx="670.00" cy="470.06" r="3.5" fill="#d62728"/>
+<line x1="705" y1="101" x2="728" y2="101" stroke="#d62728" stroke-width="3"/>
+<text x="736" y="105" font-family="Arial, sans-serif" font-size="12">Hungarian(reference)</text>
+<polyline points="90.00,428.54 131.43,223.53 172.86,207.64 255.71,237.07 421.43,270.07 670.00,227.70" fill="none" stroke="#2ca02c" stroke-width="2.4"/>
+<circle cx="90.00" cy="428.54" r="3.5" fill="#2ca02c"/>
+<circle cx="131.43" cy="223.53" r="3.5" fill="#2ca02c"/>
+<circle cx="172.86" cy="207.64" r="3.5" fill="#2ca02c"/>
+<circle cx="255.71" cy="237.07" r="3.5" fill="#2ca02c"/>
+<circle cx="421.43" cy="270.07" r="3.5" fill="#2ca02c"/>
+<circle cx="670.00" cy="227.70" r="3.5" fill="#2ca02c"/>
+<line x1="705" y1="123" x2="728" y2="123" stroke="#2ca02c" stroke-width="3"/>
+<text x="736" y="127" font-family="Arial, sans-serif" font-size="12">Soft-Entropy-KKT(tau=1)</text>
+<polyline points="90.00,458.55 131.43,453.55 172.86,457.24 255.71,457.01 421.43,456.29 670.00,458.51" fill="none" stroke="#9467bd" stroke-width="2.4"/>
+<circle cx="90.00" cy="458.55" r="3.5" fill="#9467bd"/>
+<circle cx="131.43" cy="453.55" r="3.5" fill="#9467bd"/>
+<circle cx="172.86" cy="457.24" r="3.5" fill="#9467bd"/>
+<circle cx="255.71" cy="457.01" r="3.5" fill="#9467bd"/>
+<circle cx="421.43" cy="456.29" r="3.5" fill="#9467bd"/>
+<circle cx="670.00" cy="458.51" r="3.5" fill="#9467bd"/>
+<line x1="705" y1="145" x2="728" y2="145" stroke="#9467bd" stroke-width="3"/>
+<text x="736" y="149" font-family="Arial, sans-serif" font-size="12">Soft-Entropy-KKT(tau=25)</text>
+<polyline points="90.00,448.59 131.43,374.35 172.86,400.66 255.71,403.45 421.43,412.87 670.00,424.74" fill="none" stroke="#ff7f0e" stroke-width="2.4"/>
+<circle cx="90.00" cy="448.59" r="3.5" fill="#ff7f0e"/>
+<circle cx="131.43" cy="374.35" r="3.5" fill="#ff7f0e"/>
+<circle cx="172.86" cy="400.66" r="3.5" fill="#ff7f0e"/>
+<circle cx="255.71" cy="403.45" r="3.5" fill="#ff7f0e"/>
+<circle cx="421.43" cy="412.87" r="3.5" fill="#ff7f0e"/>
+<circle cx="670.00" cy="424.74" r="3.5" fill="#ff7f0e"/>
+<line x1="705" y1="167" x2="728" y2="167" stroke="#ff7f0e" stroke-width="3"/>
+<text x="736" y="171" font-family="Arial, sans-serif" font-size="12">Soft-Entropy-KKT(tau=5)</text>
+<text x="380.0" y="532" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Number of users</text>
+<text transform="translate(24 265.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Mean runtime (s)</text>
+</svg>

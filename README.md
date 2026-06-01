@@ -52,6 +52,22 @@ python run_experiments.py --output results_quick --seeds 2 --quick
 - `results/plots/runtime_by_users.svg`
 - `results/plots/convergence_gap_by_rbs.svg`
 
+continuous soft allocation만 별도로 평가하려면 다음을 실행합니다.
+
+```powershell
+python run_continuous_experiments.py --output results/continuous --seeds 5
+```
+
+이 실험은 rounding/projection으로 0/1 assignment를 복원하지 않고, 최종 자원 할당 자체를 `X in [0, 1]`인 time-sharing 또는 soft allocation으로 해석합니다.
+
+생성 파일:
+
+- `results/continuous/raw_results.csv`
+- `results/continuous/summary.csv`
+- `results/continuous/plots/soft_objective_gap_by_users.svg`
+- `results/continuous/plots/fractional_mass_by_users.svg`
+- `results/continuous/plots/soft_runtime_by_users.svg`
+
 ## 결과
 
 개선 방법을 포함해 `--seeds 5` 조건으로 전체 실험을 다시 실행했습니다. 결과는 `raw_results.csv` 550개 row, `summary.csv` 110개 row로 생성되었습니다.
@@ -119,3 +135,54 @@ python run_experiments.py --output results_quick --seeds 2 --quick
 1. 정확도가 가장 중요하면 `Hungarian` 또는 `LP-Relax+Projection`.
 2. hard matching 없이 빠른 근사와 품질 절충이 필요하면 `Hybrid-Score-Greedy(alpha=0.25)`.
 3. differentiable soft allocation이 연구 목적이라면 `Entropy-Relax+Projection`을 쓰되, cost-aware projection으로 추가 개선해야 합니다.
+
+## Continuous Soft Allocation 실험
+
+위 결과는 모두 최종적으로 0/1 hard assignment를 복원하는 실험입니다. 추가 실험에서는 기존 결과를 유지한 채, soft allocation 자체를 허용하는 별도 convex pipeline을 구성했습니다. 비교 대상은 다음과 같습니다.
+
+- `Hungarian(reference)`: hard matching 기준선. soft 실험의 objective gap 기준으로만 사용합니다.
+- `Continuous-LP(HiGHS)`: 선형 objective와 선형 assignment 제약을 그대로 `0 <= X <= 1`에서 풉니다. 이는 convex LP입니다.
+- `Soft-Entropy-KKT(tau=1,5,25)`: linear objective에 convex entropy regularizer를 더한 문제를 풉니다. 최종 `X`를 rounding하지 않으므로 실제 soft allocation입니다.
+
+entropy-KKT 문제는 다음 형태입니다.
+
+```text
+min_X <C, X> + tau * sum_{i,n} x_{i,n}(log x_{i,n} - 1)
+s.t.  sum_n x_{i,n} <= 1,  sum_i x_{i,n} <= 1,  x_{i,n} >= 0
+```
+
+부등식 제약은 dummy user/RB를 추가해 balanced equality scaling 문제로 바꾸었습니다. KKT stationarity는 다음 Gibbs/Sinkhorn 형태를 갖습니다.
+
+```text
+x_{i,n} = u_i * exp(-C_{i,n} / tau) * v_n
+```
+
+따라서 `Soft-Entropy-KKT`는 일반 nonlinear solver를 호출하지 않고, KKT 조건에서 유도한 Sinkhorn scaling으로 풉니다. `Continuous-LP(HiGHS)`만 `scipy.optimize.linprog(method="highs")`를 사용합니다.
+
+시각적 plot:
+
+- [continuous objective gap](results/continuous/plots/soft_objective_gap_by_users.svg)
+- [fractional mass ratio](results/continuous/plots/fractional_mass_by_users.svg)
+- [continuous runtime](results/continuous/plots/soft_runtime_by_users.svg)
+
+### Continuous 전체 평균
+
+`--seeds 5` 실행 결과 `raw_results.csv` 275개 row, `summary.csv` 55개 row가 생성되었습니다.
+
+| 방법 | Hungarian 대비 평균 linear gap | 최악 평균 gap | 평균 fractional mass ratio | 평균 KKT residual | 평균 runtime | 평균 FL quality |
+|---|---:|---:|---:|---:|---:|---:|
+| `Hungarian(reference)` | 0.00% | 0.00% | 0.0000 | 0.000e+00 | 0.051 ms | 0.7281 |
+| `Continuous-LP(HiGHS)` | 0.00% | 0.00% | 0.0000 | 0.000e+00 | 2.887 ms | 0.7281 |
+| `Soft-Entropy-KKT(tau=1)` | 10.28% | 52.48% | 1.0000 | 1.918e-04 | 3.257 ms | 0.7254 |
+| `Soft-Entropy-KKT(tau=5)` | 48.83% | 211.22% | 1.0000 | 3.417e-11 | 0.992 ms | 0.7125 |
+| `Soft-Entropy-KKT(tau=25)` | 250.57% | 975.23% | 1.0000 | 6.293e-12 | 0.261 ms | 0.6343 |
+
+### Continuous sweep 해석
+
+`Continuous-LP(HiGHS)`는 모든 사용자 수/RB 수 sweep에서 Hungarian과 같은 objective를 냈습니다. 이는 현재처럼 `P*_{i,n}`과 `qhat_{i,n}`을 상수로 고정한 선형 assignment polytope가 integral extreme point를 갖기 때문입니다. 따라서 LP relaxation은 convex이지만, 결과적으로는 soft allocation이 아니라 Hungarian과 동등한 hard allocation으로 수렴합니다.
+
+`Soft-Entropy-KKT(tau=1)`은 fractional mass ratio가 평균 1.0000으로, 최종 allocation이 거의 전부 fractional입니다. 평균 linear gap은 10.28%였지만 FL quality는 0.7254로 Hungarian의 0.7281에 가깝게 유지되었습니다. 사용자 수가 많아져 RB 경쟁이 완화되는 구간에서는 gap이 크게 줄었습니다. 예를 들어 `U=80, R=12`에서는 gap이 0.09%, FL quality가 0.2426으로 Hungarian의 0.2433과 거의 동일했습니다.
+
+반대로 RB가 매우 충분한 구간에서는 entropy smoothing의 비용이 커집니다. `U=15, R=20`에서 `tau=1`의 gap은 52.48%였고, `tau=5`와 `tau=25`는 각각 211.22%, 975.23%까지 증가했습니다. 이는 optimum이 소수의 매우 좋은 RB에 집중되는 상황에서 entropy가 mass를 넓게 분산시키기 때문입니다.
+
+결론적으로, 전체 파이프라인을 convex continuous optimization으로 유지하려면 최종 soft allocation을 time-sharing 또는 probabilistic allocation으로 인정해야 합니다. 이 경우 `Soft-Entropy-KKT(tau=1)`이 가장 합리적인 절충점입니다. 반면 실제 시스템이 반드시 0/1 RB 할당을 요구하면 rounding/projection 단계가 다시 필요하며, 그 순간 전체 파이프라인은 완전한 convex optimization만으로 닫히지 않습니다.
