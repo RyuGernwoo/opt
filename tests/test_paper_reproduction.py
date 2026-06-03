@@ -20,11 +20,13 @@ class PaperReproductionTests(unittest.TestCase):
                 output_dir=Path(tmp),
                 seeds=1,
                 user_sweep=(6,),
+                matching_user_sweep=(6,),
                 rb_sweep=(4,),
                 sample_sweep=(8,),
                 fixed_users=6,
                 fixed_rbs=4,
                 digit_rounds=2,
+                digit_sweep_rounds=2,
                 iteration_points=(0, 1, 2),
             )
             paths = run_paper_reproduction_suite(settings)

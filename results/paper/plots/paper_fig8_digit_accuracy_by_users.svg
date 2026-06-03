@@ -1,94 +1,85 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560">
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="390" viewBox="0 0 540 390">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="90" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="700">Paper Fig.8-style Digit Accuracy by Users</text>
-<line x1="90" y1="475" x2="670" y2="475" stroke="#222" stroke-width="1.2"/>
-<line x1="90" y1="55" x2="90" y2="475" stroke="#222" stroke-width="1.2"/>
-<line x1="90" y1="475.00" x2="670" y2="475.00" stroke="#e5e5e5"/>
-<text x="78" y="479.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0</text>
-<line x1="90" y1="391.00" x2="670" y2="391.00" stroke="#e5e5e5"/>
-<text x="78" y="395.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.196</text>
-<line x1="90" y1="307.00" x2="670" y2="307.00" stroke="#e5e5e5"/>
-<text x="78" y="311.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.393</text>
-<line x1="90" y1="223.00" x2="670" y2="223.00" stroke="#e5e5e5"/>
-<text x="78" y="227.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.589</text>
-<line x1="90" y1="139.00" x2="670" y2="139.00" stroke="#e5e5e5"/>
-<text x="78" y="143.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.786</text>
-<line x1="90" y1="55.00" x2="670" y2="55.00" stroke="#e5e5e5"/>
-<text x="78" y="59.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.982</text>
-<line x1="90.00" y1="475" x2="90.00" y2="480" stroke="#222"/>
-<text x="90.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">10</text>
-<line x1="206.00" y1="475" x2="206.00" y2="480" stroke="#222"/>
-<text x="206.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">12</text>
-<line x1="380.00" y1="475" x2="380.00" y2="480" stroke="#222"/>
-<text x="380.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">15</text>
-<line x1="554.00" y1="475" x2="554.00" y2="480" stroke="#222"/>
-<text x="554.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">18</text>
-<line x1="670.00" y1="475" x2="670.00" y2="480" stroke="#222"/>
-<text x="670.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">20</text>
-<polyline points="90.00,96.08 206.00,90.19 380.00,109.23 554.00,124.41 670.00,190.81" fill="none" stroke="#1f77b4" stroke-width="2.4"/>
-<circle cx="90.00" cy="96.08" r="3.5" fill="#1f77b4"/>
-<circle cx="206.00" cy="90.19" r="3.5" fill="#1f77b4"/>
-<circle cx="380.00" cy="109.23" r="3.5" fill="#1f77b4"/>
-<circle cx="554.00" cy="124.41" r="3.5" fill="#1f77b4"/>
-<circle cx="670.00" cy="190.81" r="3.5" fill="#1f77b4"/>
-<line x1="705" y1="79" x2="728" y2="79" stroke="#1f77b4" stroke-width="3"/>
-<text x="736" y="83" font-family="Arial, sans-serif" font-size="12">Continuous-LP(HiGHS)</text>
-<polyline points="90.00,96.08 206.00,91.32 380.00,120.10 554.00,130.30 670.00,173.14" fill="none" stroke="#d62728" stroke-width="2.4"/>
-<circle cx="90.00" cy="96.08" r="3.5" fill="#d62728"/>
-<circle cx="206.00" cy="91.32" r="3.5" fill="#d62728"/>
-<circle cx="380.00" cy="120.10" r="3.5" fill="#d62728"/>
-<circle cx="554.00" cy="130.30" r="3.5" fill="#d62728"/>
-<circle cx="670.00" cy="173.14" r="3.5" fill="#d62728"/>
-<line x1="705" y1="101" x2="728" y2="101" stroke="#d62728" stroke-width="3"/>
-<text x="736" y="105" font-family="Arial, sans-serif" font-size="12">Hybrid-Score-Greedy(alpha=0.25)</text>
-<polyline points="90.00,96.08 206.00,90.19 380.00,109.23 554.00,124.41 670.00,190.81" fill="none" stroke="#2ca02c" stroke-width="2.4"/>
-<circle cx="90.00" cy="96.08" r="3.5" fill="#2ca02c"/>
-<circle cx="206.00" cy="90.19" r="3.5" fill="#2ca02c"/>
-<circle cx="380.00" cy="109.23" r="3.5" fill="#2ca02c"/>
-<circle cx="554.00" cy="124.41" r="3.5" fill="#2ca02c"/>
-<circle cx="670.00" cy="190.81" r="3.5" fill="#2ca02c"/>
-<line x1="705" y1="123" x2="728" y2="123" stroke="#2ca02c" stroke-width="3"/>
-<text x="736" y="127" font-family="Arial, sans-serif" font-size="12">LP-Relax+Projection</text>
-<polyline points="90.00,96.08 206.00,90.19 380.00,109.23 554.00,124.41 670.00,190.81" fill="none" stroke="#9467bd" stroke-width="2.4"/>
-<circle cx="90.00" cy="96.08" r="3.5" fill="#9467bd"/>
-<circle cx="206.00" cy="90.19" r="3.5" fill="#9467bd"/>
-<circle cx="380.00" cy="109.23" r="3.5" fill="#9467bd"/>
-<circle cx="554.00" cy="124.41" r="3.5" fill="#9467bd"/>
-<circle cx="670.00" cy="190.81" r="3.5" fill="#9467bd"/>
-<line x1="705" y1="145" x2="728" y2="145" stroke="#9467bd" stroke-width="3"/>
-<text x="736" y="149" font-family="Arial, sans-serif" font-size="12">Paper-Hungarian</text>
-<polyline points="90.00,176.99 206.00,175.40 380.00,157.50 554.00,141.86 670.00,231.38" fill="none" stroke="#ff7f0e" stroke-width="2.4"/>
-<circle cx="90.00" cy="176.99" r="3.5" fill="#ff7f0e"/>
-<circle cx="206.00" cy="175.40" r="3.5" fill="#ff7f0e"/>
-<circle cx="380.00" cy="157.50" r="3.5" fill="#ff7f0e"/>
-<circle cx="554.00" cy="141.86" r="3.5" fill="#ff7f0e"/>
-<circle cx="670.00" cy="231.38" r="3.5" fill="#ff7f0e"/>
-<line x1="705" y1="167" x2="728" y2="167" stroke="#ff7f0e" stroke-width="3"/>
-<text x="736" y="171" font-family="Arial, sans-serif" font-size="12">Paper-OptUser-RandomRB</text>
-<polyline points="90.00,113.53 206.00,98.58 380.00,124.41 554.00,133.02 670.00,163.84" fill="none" stroke="#17becf" stroke-width="2.4"/>
-<circle cx="90.00" cy="113.53" r="3.5" fill="#17becf"/>
-<circle cx="206.00" cy="98.58" r="3.5" fill="#17becf"/>
-<circle cx="380.00" cy="124.41" r="3.5" fill="#17becf"/>
-<circle cx="554.00" cy="133.02" r="3.5" fill="#17becf"/>
-<circle cx="670.00" cy="163.84" r="3.5" fill="#17becf"/>
-<line x1="705" y1="189" x2="728" y2="189" stroke="#17becf" stroke-width="3"/>
-<text x="736" y="193" font-family="Arial, sans-serif" font-size="12">Paper-RandomUserRB</text>
-<polyline points="90.00,96.08 206.00,90.19 380.00,100.84 554.00,117.39 670.00,152.29" fill="none" stroke="#4d4d4d" stroke-width="2.4"/>
-<circle cx="90.00" cy="96.08" r="3.5" fill="#4d4d4d"/>
-<circle cx="206.00" cy="90.19" r="3.5" fill="#4d4d4d"/>
-<circle cx="380.00" cy="100.84" r="3.5" fill="#4d4d4d"/>
-<circle cx="554.00" cy="117.39" r="3.5" fill="#4d4d4d"/>
-<circle cx="670.00" cy="152.29" r="3.5" fill="#4d4d4d"/>
-<line x1="705" y1="211" x2="728" y2="211" stroke="#4d4d4d" stroke-width="3"/>
-<text x="736" y="215" font-family="Arial, sans-serif" font-size="12">Paper-Wireless-PER</text>
-<polyline points="90.00,96.08 206.00,89.96 380.00,86.11 554.00,111.04 670.00,116.03" fill="none" stroke="#1f77b4" stroke-width="2.4"/>
-<circle cx="90.00" cy="96.08" r="3.5" fill="#1f77b4"/>
-<circle cx="206.00" cy="89.96" r="3.5" fill="#1f77b4"/>
-<circle cx="380.00" cy="86.11" r="3.5" fill="#1f77b4"/>
-<circle cx="554.00" cy="111.04" r="3.5" fill="#1f77b4"/>
-<circle cx="670.00" cy="116.03" r="3.5" fill="#1f77b4"/>
-<line x1="705" y1="233" x2="728" y2="233" stroke="#1f77b4" stroke-width="3"/>
-<text x="736" y="237" font-family="Arial, sans-serif" font-size="12">Soft-Entropy-KKT(tau=1)</text>
-<text x="380.0" y="532" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Number of users</text>
-<text transform="translate(24 265.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Accuracy</text>
+<rect x="78" y="22" width="386" height="260" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+<line x1="78" y1="282.00" x2="464" y2="282.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="286.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.1</text>
+<line x1="78" y1="230.00" x2="464" y2="230.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="234.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.264</text>
+<line x1="78" y1="178.00" x2="464" y2="178.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="182.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.428</text>
+<line x1="78" y1="126.00" x2="464" y2="126.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="130.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.592</text>
+<line x1="78" y1="74.00" x2="464" y2="74.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="78.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.756</text>
+<line x1="78" y1="22.00" x2="464" y2="22.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="26.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.92</text>
+<line x1="78.00" y1="22" x2="78.00" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="78.00" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">3</text>
+<line x1="155.20" y1="22" x2="155.20" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="155.20" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">6</text>
+<line x1="232.40" y1="22" x2="232.40" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="232.40" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">9</text>
+<line x1="309.60" y1="22" x2="309.60" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="309.60" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">12</text>
+<line x1="386.80" y1="22" x2="386.80" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="386.80" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">15</text>
+<line x1="464.00" y1="22" x2="464.00" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="464.00" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">18</text>
+<text x="271.0" y="329" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16">Total number of users</text>
+<text transform="translate(22 152.0) rotate(-90)" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16">Identification accuracy</text>
+<polyline points="78.00,24.19 155.20,29.74 232.40,28.06 309.60,28.39 386.80,42.51 464.00,53.76" fill="none" stroke="#000000" stroke-width="3"/>
+<polyline points="78.00,43.85 155.20,48.39 232.40,63.68 309.60,91.57 386.80,78.30 464.00,66.70" fill="none" stroke="#0000ff" stroke-width="3" stroke-dasharray="9 7"/>
+<polyline points="78.00,41.67 155.20,42.67 232.40,32.59 309.60,34.61 386.80,53.76 464.00,60.15" fill="none" stroke="#ff0000" stroke-width="3"/>
+<polyline points="78.00,24.19 155.20,29.74 232.40,28.06 309.60,28.39 386.80,36.29 464.00,48.56" fill="none" stroke="#b00020" stroke-width="3" stroke-dasharray="2 3"/>
+<polyline points="78.00,24.19 155.20,29.74 232.40,28.06 309.60,28.39 386.80,42.51 464.00,53.76" fill="none" stroke="#ff00ff" stroke-width="3" stroke-dasharray="8 5"/>
+<circle cx="78.00" cy="24.19" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="155.20" cy="29.74" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="232.40" cy="28.06" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="309.60" cy="28.39" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="386.80" cy="42.51" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="464.00" cy="53.76" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<polyline points="78.00,24.19 155.20,29.74 232.40,28.06 309.60,29.23 386.80,50.57 464.00,58.13" fill="none" stroke="#00aa00" stroke-width="3"/>
+<rect x="74.90" y="21.09" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="152.10" y="26.64" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="229.30" y="24.96" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="306.50" y="26.13" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="383.70" y="47.47" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="460.90" y="55.03" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<polyline points="78.00,24.19 155.20,29.74 232.40,28.06 309.60,28.39 386.80,42.51 464.00,53.76" fill="none" stroke="#00a6d6" stroke-width="3" stroke-dasharray="7 4"/>
+<polygon points="78.00,20.19 74.00,27.69 82.00,27.69" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="155.20,25.74 151.20,33.24 159.20,33.24" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="232.40,24.06 228.40,31.56 236.40,31.56" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="309.60,24.39 305.60,31.89 313.60,31.89" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="386.80,38.51 382.80,46.01 390.80,46.01" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="464.00,49.76 460.00,57.26 468.00,57.26" fill="#00a6d6" stroke="#00a6d6"/>
+<polyline points="78.00,24.19 155.20,29.74 232.40,28.39 309.60,28.22 386.80,25.37 464.00,43.85" fill="none" stroke="#ff8c00" stroke-width="3"/>
+<polygon points="78.00,19.99 73.80,24.19 78.00,28.39 82.20,24.19" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="155.20,25.54 151.00,29.74 155.20,33.94 159.40,29.74" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="232.40,24.19 228.20,28.39 232.40,32.59 236.60,28.39" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="309.60,24.02 305.40,28.22 309.60,32.42 313.80,28.22" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="386.80,21.17 382.60,25.37 386.80,29.57 391.00,25.37" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="464.00,39.65 459.80,43.85 464.00,48.05 468.20,43.85" fill="#ff8c00" stroke="#ff8c00"/>
+<rect x="278" y="104" width="174" height="164" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+<line x1="288" y1="121" x2="320" y2="121" stroke="#000000" stroke-width="3"/>
+<text x="326" y="126" font-family="Arial, Helvetica, sans-serif" font-size="12">Proposed FL</text>
+<line x1="288" y1="139" x2="320" y2="139" stroke="#0000ff" stroke-width="3" stroke-dasharray="9 7"/>
+<text x="326" y="144" font-family="Arial, Helvetica, sans-serif" font-size="12">Baseline a)</text>
+<line x1="288" y1="157" x2="320" y2="157" stroke="#ff0000" stroke-width="3"/>
+<text x="326" y="162" font-family="Arial, Helvetica, sans-serif" font-size="12">Baseline b)</text>
+<line x1="288" y1="175" x2="320" y2="175" stroke="#b00020" stroke-width="3" stroke-dasharray="2 3"/>
+<text x="326" y="180" font-family="Arial, Helvetica, sans-serif" font-size="12">Baseline c)</text>
+<line x1="288" y1="193" x2="320" y2="193" stroke="#ff00ff" stroke-width="3" stroke-dasharray="8 5"/>
+<circle cx="304.00" cy="193.00" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<text x="326" y="198" font-family="Arial, Helvetica, sans-serif" font-size="12">LP-Relax+Proj.</text>
+<line x1="288" y1="211" x2="320" y2="211" stroke="#00aa00" stroke-width="3"/>
+<rect x="300.90" y="207.90" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<text x="326" y="216" font-family="Arial, Helvetica, sans-serif" font-size="12">Hybrid-Greedy</text>
+<line x1="288" y1="229" x2="320" y2="229" stroke="#00a6d6" stroke-width="3" stroke-dasharray="7 4"/>
+<polygon points="304.00,225.00 300.00,232.50 308.00,232.50" fill="#00a6d6" stroke="#00a6d6"/>
+<text x="326" y="234" font-family="Arial, Helvetica, sans-serif" font-size="12">Continuous-LP</text>
+<line x1="288" y1="247" x2="320" y2="247" stroke="#ff8c00" stroke-width="3"/>
+<polygon points="304.00,242.80 299.80,247.00 304.00,251.20 308.20,247.00" fill="#ff8c00" stroke="#ff8c00"/>
+<text x="326" y="252" font-family="Arial, Helvetica, sans-serif" font-size="12">Soft-KKT tau=1</text>
+<text x="78" y="344" font-family="Times New Roman, serif" font-size="14">Fig. 8. Identification accuracy as the total number of users varies (R =</text>
+<text x="78" y="361" font-family="Times New Roman, serif" font-size="14">12).</text>
 </svg>

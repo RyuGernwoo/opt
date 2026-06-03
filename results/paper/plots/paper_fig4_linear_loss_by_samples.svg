@@ -1,94 +1,78 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560">
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="390" viewBox="0 0 540 390">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="90" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="700">Paper Fig.4-style Linear Loss</text>
-<line x1="90" y1="475" x2="670" y2="475" stroke="#222" stroke-width="1.2"/>
-<line x1="90" y1="55" x2="90" y2="475" stroke="#222" stroke-width="1.2"/>
-<line x1="90" y1="475.00" x2="670" y2="475.00" stroke="#e5e5e5"/>
-<text x="78" y="479.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0</text>
-<line x1="90" y1="391.00" x2="670" y2="391.00" stroke="#e5e5e5"/>
-<text x="78" y="395.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.00312</text>
-<line x1="90" y1="307.00" x2="670" y2="307.00" stroke="#e5e5e5"/>
-<text x="78" y="311.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.00624</text>
-<line x1="90" y1="223.00" x2="670" y2="223.00" stroke="#e5e5e5"/>
-<text x="78" y="227.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.00937</text>
-<line x1="90" y1="139.00" x2="670" y2="139.00" stroke="#e5e5e5"/>
-<text x="78" y="143.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.0125</text>
-<line x1="90" y1="55.00" x2="670" y2="55.00" stroke="#e5e5e5"/>
-<text x="78" y="59.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.0156</text>
-<line x1="90.00" y1="475" x2="90.00" y2="480" stroke="#222"/>
-<text x="90.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">10</text>
-<line x1="206.00" y1="475" x2="206.00" y2="480" stroke="#222"/>
-<text x="206.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">20</text>
-<line x1="322.00" y1="475" x2="322.00" y2="480" stroke="#222"/>
-<text x="322.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">30</text>
-<line x1="438.00" y1="475" x2="438.00" y2="480" stroke="#222"/>
-<text x="438.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">40</text>
-<line x1="670.00" y1="475" x2="670.00" y2="480" stroke="#222"/>
-<text x="670.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">60</text>
-<polyline points="90.00,326.02 206.00,425.82 322.00,468.07 438.00,447.28 670.00,456.62" fill="none" stroke="#1f77b4" stroke-width="2.4"/>
-<circle cx="90.00" cy="326.02" r="3.5" fill="#1f77b4"/>
-<circle cx="206.00" cy="425.82" r="3.5" fill="#1f77b4"/>
-<circle cx="322.00" cy="468.07" r="3.5" fill="#1f77b4"/>
-<circle cx="438.00" cy="447.28" r="3.5" fill="#1f77b4"/>
-<circle cx="670.00" cy="456.62" r="3.5" fill="#1f77b4"/>
-<line x1="705" y1="79" x2="728" y2="79" stroke="#1f77b4" stroke-width="3"/>
-<text x="736" y="83" font-family="Arial, sans-serif" font-size="12">Continuous-LP(HiGHS)</text>
-<polyline points="90.00,354.77 206.00,456.13 322.00,464.81 438.00,441.55 670.00,454.75" fill="none" stroke="#d62728" stroke-width="2.4"/>
-<circle cx="90.00" cy="354.77" r="3.5" fill="#d62728"/>
-<circle cx="206.00" cy="456.13" r="3.5" fill="#d62728"/>
-<circle cx="322.00" cy="464.81" r="3.5" fill="#d62728"/>
-<circle cx="438.00" cy="441.55" r="3.5" fill="#d62728"/>
-<circle cx="670.00" cy="454.75" r="3.5" fill="#d62728"/>
-<line x1="705" y1="101" x2="728" y2="101" stroke="#d62728" stroke-width="3"/>
-<text x="736" y="105" font-family="Arial, sans-serif" font-size="12">Hybrid-Score-Greedy(alpha=0.25)</text>
-<polyline points="90.00,326.02 206.00,425.82 322.00,468.07 438.00,447.28 670.00,456.62" fill="none" stroke="#2ca02c" stroke-width="2.4"/>
-<circle cx="90.00" cy="326.02" r="3.5" fill="#2ca02c"/>
-<circle cx="206.00" cy="425.82" r="3.5" fill="#2ca02c"/>
-<circle cx="322.00" cy="468.07" r="3.5" fill="#2ca02c"/>
-<circle cx="438.00" cy="447.28" r="3.5" fill="#2ca02c"/>
-<circle cx="670.00" cy="456.62" r="3.5" fill="#2ca02c"/>
-<line x1="705" y1="123" x2="728" y2="123" stroke="#2ca02c" stroke-width="3"/>
-<text x="736" y="127" font-family="Arial, sans-serif" font-size="12">LP-Relax+Projection</text>
-<polyline points="90.00,326.02 206.00,425.82 322.00,468.07 438.00,447.28 670.00,456.62" fill="none" stroke="#9467bd" stroke-width="2.4"/>
-<circle cx="90.00" cy="326.02" r="3.5" fill="#9467bd"/>
-<circle cx="206.00" cy="425.82" r="3.5" fill="#9467bd"/>
-<circle cx="322.00" cy="468.07" r="3.5" fill="#9467bd"/>
-<circle cx="438.00" cy="447.28" r="3.5" fill="#9467bd"/>
-<circle cx="670.00" cy="456.62" r="3.5" fill="#9467bd"/>
-<line x1="705" y1="145" x2="728" y2="145" stroke="#9467bd" stroke-width="3"/>
-<text x="736" y="149" font-family="Arial, sans-serif" font-size="12">Paper-Hungarian</text>
-<polyline points="90.00,86.11 206.00,369.47 322.00,427.26 438.00,451.62 670.00,456.64" fill="none" stroke="#ff7f0e" stroke-width="2.4"/>
-<circle cx="90.00" cy="86.11" r="3.5" fill="#ff7f0e"/>
-<circle cx="206.00" cy="369.47" r="3.5" fill="#ff7f0e"/>
-<circle cx="322.00" cy="427.26" r="3.5" fill="#ff7f0e"/>
-<circle cx="438.00" cy="451.62" r="3.5" fill="#ff7f0e"/>
-<circle cx="670.00" cy="456.64" r="3.5" fill="#ff7f0e"/>
-<line x1="705" y1="167" x2="728" y2="167" stroke="#ff7f0e" stroke-width="3"/>
-<text x="736" y="171" font-family="Arial, sans-serif" font-size="12">Paper-OptUser-RandomRB</text>
-<polyline points="90.00,378.94 206.00,396.42 322.00,454.35 438.00,448.46 670.00,455.27" fill="none" stroke="#17becf" stroke-width="2.4"/>
-<circle cx="90.00" cy="378.94" r="3.5" fill="#17becf"/>
-<circle cx="206.00" cy="396.42" r="3.5" fill="#17becf"/>
-<circle cx="322.00" cy="454.35" r="3.5" fill="#17becf"/>
-<circle cx="438.00" cy="448.46" r="3.5" fill="#17becf"/>
-<circle cx="670.00" cy="455.27" r="3.5" fill="#17becf"/>
-<line x1="705" y1="189" x2="728" y2="189" stroke="#17becf" stroke-width="3"/>
-<text x="736" y="193" font-family="Arial, sans-serif" font-size="12">Paper-RandomUserRB</text>
-<polyline points="90.00,326.02 206.00,425.82 322.00,468.07 438.00,447.28 670.00,456.62" fill="none" stroke="#4d4d4d" stroke-width="2.4"/>
-<circle cx="90.00" cy="326.02" r="3.5" fill="#4d4d4d"/>
-<circle cx="206.00" cy="425.82" r="3.5" fill="#4d4d4d"/>
-<circle cx="322.00" cy="468.07" r="3.5" fill="#4d4d4d"/>
-<circle cx="438.00" cy="447.28" r="3.5" fill="#4d4d4d"/>
-<circle cx="670.00" cy="456.62" r="3.5" fill="#4d4d4d"/>
-<line x1="705" y1="211" x2="728" y2="211" stroke="#4d4d4d" stroke-width="3"/>
-<text x="736" y="215" font-family="Arial, sans-serif" font-size="12">Paper-Wireless-PER</text>
-<polyline points="90.00,385.26 206.00,420.32 322.00,466.06 438.00,457.54 670.00,459.47" fill="none" stroke="#1f77b4" stroke-width="2.4"/>
-<circle cx="90.00" cy="385.26" r="3.5" fill="#1f77b4"/>
-<circle cx="206.00" cy="420.32" r="3.5" fill="#1f77b4"/>
-<circle cx="322.00" cy="466.06" r="3.5" fill="#1f77b4"/>
-<circle cx="438.00" cy="457.54" r="3.5" fill="#1f77b4"/>
-<circle cx="670.00" cy="459.47" r="3.5" fill="#1f77b4"/>
-<line x1="705" y1="233" x2="728" y2="233" stroke="#1f77b4" stroke-width="3"/>
-<text x="736" y="237" font-family="Arial, sans-serif" font-size="12">Soft-Entropy-KKT(tau=1)</text>
-<text x="380.0" y="532" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Samples per user</text>
-<text transform="translate(24 265.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Validation MSE</text>
+<rect x="78" y="22" width="386" height="260" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+<line x1="78" y1="282.00" x2="464" y2="282.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="286.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">-0.000878</text>
+<line x1="78" y1="230.00" x2="464" y2="230.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="234.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.00242</text>
+<line x1="78" y1="178.00" x2="464" y2="178.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="182.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.00571</text>
+<line x1="78" y1="126.00" x2="464" y2="126.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="130.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.009</text>
+<line x1="78" y1="74.00" x2="464" y2="74.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="78.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.0123</text>
+<line x1="78" y1="22.00" x2="464" y2="22.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="26.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.0156</text>
+<line x1="78.00" y1="22" x2="78.00" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="78.00" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">10</text>
+<line x1="174.50" y1="22" x2="174.50" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="174.50" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">20</text>
+<line x1="271.00" y1="22" x2="271.00" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="271.00" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">30</text>
+<line x1="367.50" y1="22" x2="367.50" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="367.50" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">40</text>
+<line x1="464.00" y1="22" x2="464.00" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="464.00" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">50</text>
+<text x="271.0" y="329" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16">Number of data samples per user</text>
+<text transform="translate(22 152.0) rotate(-90)" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16">Value of the loss function</text>
+<polyline points="78.00,180.71 174.50,239.27 271.00,264.07 367.50,251.87 464.00,253.17" fill="none" stroke="#000000" stroke-width="3"/>
+<polyline points="78.00,39.93 174.50,206.21 271.00,240.12 367.50,254.41 464.00,258.05" fill="none" stroke="#0000ff" stroke-width="3" stroke-dasharray="9 7"/>
+<polyline points="78.00,211.76 174.50,222.02 271.00,256.02 367.50,252.56 464.00,257.08" fill="none" stroke="#ff0000" stroke-width="3"/>
+<polyline points="78.00,180.71 174.50,239.27 271.00,264.07 367.50,251.87 464.00,253.17" fill="none" stroke="#b00020" stroke-width="3" stroke-dasharray="2 3"/>
+<polyline points="78.00,180.71 174.50,239.27 271.00,264.07 367.50,251.87 464.00,253.17" fill="none" stroke="#ff00ff" stroke-width="3" stroke-dasharray="8 5"/>
+<circle cx="78.00" cy="180.71" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="174.50" cy="239.27" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="271.00" cy="264.07" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="367.50" cy="251.87" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="464.00" cy="253.17" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<polyline points="78.00,197.58 174.50,257.06 271.00,262.15 367.50,248.50 464.00,253.73" fill="none" stroke="#00aa00" stroke-width="3"/>
+<rect x="74.90" y="194.48" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="171.40" y="253.96" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="267.90" y="259.05" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="364.40" y="245.40" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="460.90" y="250.63" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<polyline points="78.00,180.71 174.50,239.27 271.00,264.07 367.50,251.87 464.00,253.17" fill="none" stroke="#00a6d6" stroke-width="3" stroke-dasharray="7 4"/>
+<polygon points="78.00,176.71 74.00,184.21 82.00,184.21" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="174.50,235.27 170.50,242.77 178.50,242.77" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="271.00,260.07 267.00,267.57 275.00,267.57" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="367.50,247.87 363.50,255.37 371.50,255.37" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="464.00,249.17 460.00,256.67 468.00,256.67" fill="#00a6d6" stroke="#00a6d6"/>
+<polyline points="78.00,215.47 174.50,236.05 271.00,262.89 367.50,257.89 464.00,255.45" fill="none" stroke="#ff8c00" stroke-width="3"/>
+<polygon points="78.00,211.27 73.80,215.47 78.00,219.67 82.20,215.47" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="174.50,231.85 170.30,236.05 174.50,240.25 178.70,236.05" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="271.00,258.69 266.80,262.89 271.00,267.09 275.20,262.89" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="367.50,253.69 363.30,257.89 367.50,262.09 371.70,257.89" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="464.00,251.25 459.80,255.45 464.00,259.65 468.20,255.45" fill="#ff8c00" stroke="#ff8c00"/>
+<rect x="278" y="36" width="174" height="164" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+<line x1="288" y1="53" x2="320" y2="53" stroke="#000000" stroke-width="3"/>
+<text x="326" y="58" font-family="Arial, Helvetica, sans-serif" font-size="12">Proposed FL</text>
+<line x1="288" y1="71" x2="320" y2="71" stroke="#0000ff" stroke-width="3" stroke-dasharray="9 7"/>
+<text x="326" y="76" font-family="Arial, Helvetica, sans-serif" font-size="12">Baseline a)</text>
+<line x1="288" y1="89" x2="320" y2="89" stroke="#ff0000" stroke-width="3"/>
+<text x="326" y="94" font-family="Arial, Helvetica, sans-serif" font-size="12">Baseline b)</text>
+<line x1="288" y1="107" x2="320" y2="107" stroke="#b00020" stroke-width="3" stroke-dasharray="2 3"/>
+<text x="326" y="112" font-family="Arial, Helvetica, sans-serif" font-size="12">Baseline c)</text>
+<line x1="288" y1="125" x2="320" y2="125" stroke="#ff00ff" stroke-width="3" stroke-dasharray="8 5"/>
+<circle cx="304.00" cy="125.00" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<text x="326" y="130" font-family="Arial, Helvetica, sans-serif" font-size="12">LP-Relax+Proj.</text>
+<line x1="288" y1="143" x2="320" y2="143" stroke="#00aa00" stroke-width="3"/>
+<rect x="300.90" y="139.90" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<text x="326" y="148" font-family="Arial, Helvetica, sans-serif" font-size="12">Hybrid-Greedy</text>
+<line x1="288" y1="161" x2="320" y2="161" stroke="#00a6d6" stroke-width="3" stroke-dasharray="7 4"/>
+<polygon points="304.00,157.00 300.00,164.50 308.00,164.50" fill="#00a6d6" stroke="#00a6d6"/>
+<text x="326" y="166" font-family="Arial, Helvetica, sans-serif" font-size="12">Continuous-LP</text>
+<line x1="288" y1="179" x2="320" y2="179" stroke="#ff8c00" stroke-width="3"/>
+<polygon points="304.00,174.80 299.80,179.00 304.00,183.20 308.20,179.00" fill="#ff8c00" stroke="#ff8c00"/>
+<text x="326" y="184" font-family="Arial, Helvetica, sans-serif" font-size="12">Soft-KKT tau=1</text>
+<text x="78" y="344" font-family="Times New Roman, serif" font-size="14">Fig. 4. Training loss as the number of data samples per user varies.</text>
 </svg>

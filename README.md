@@ -171,7 +171,7 @@ python run_paper_reproduction.py --output results_paper_quick --seeds 1 --quick
   - [continuous fractional mass](results/continuous/plots/fractional_mass_by_users.svg)
   - [continuous runtime](results/continuous/plots/soft_runtime_by_users.svg)
   - [paper Fig.4-style linear loss](results/paper/plots/paper_fig4_linear_loss_by_samples.svg)
-  - [paper Fig.5-style matching work](results/paper/plots/paper_fig5_matching_work_by_users.svg)
+  - [paper Fig.5-style number of iterations](results/paper/plots/paper_fig5_matching_work_by_users.svg)
   - [paper Fig.6-style convergence gap](results/paper/plots/paper_fig6_convergence_gap_by_users.svg)
   - [paper Fig.7-style digit accuracy by iterations](results/paper/plots/paper_fig7_digit_accuracy_by_iterations.svg)
   - [paper Fig.8-style digit accuracy by users](results/paper/plots/paper_fig8_digit_accuracy_by_users.svg)
@@ -196,14 +196,17 @@ python run_paper_reproduction.py --output results_paper_quick --seeds 1 --quick
   - RB 수 sweep: `R = [5, 9, 12, 15, 20]`, `U = 15`
 - Paper-style 실험 파라미터
   - seeds: `3`
-  - 사용자 수 sweep: `U = [10, 12, 15, 18, 20]`, `R = 12`
-  - RB 수 sweep: `R = [5, 9, 12, 15, 20]`, `U = 15`
-  - samples per user sweep: `[10, 20, 30, 40, 60]`
-  - digit FL rounds: `12`
+  - Fig.5 사용자 수 sweep: `U = [3, 5, 10, 15, 20, 25]`
+  - Fig.6/Fig.8 사용자 수 sweep: `U = [3, 6, 9, 12, 15, 18]`, `R = 12`
+  - Fig.9 RB 수 sweep: `R = [3, 6, 9, 12]`, `U = 15`
+  - Fig.4 samples per user sweep: `[10, 20, 30, 40, 50]`
+  - Fig.7 digit FL rounds: `120`
+  - Fig.8/Fig.9 digit FL rounds: `12`
+  - plot format: 원 논문처럼 MATLAB-style 흰 배경, 검은 box 축, 회색 grid, 내부 legend, 원 논문 caption 텍스트를 사용합니다.
 - 결과 규모
   - Hard 복원 실험: `raw_results.csv` 550 rows, `summary.csv` 110 rows.
   - Continuous soft 실험: `raw_results.csv` 275 rows, `summary.csv` 55 rows.
-  - Paper-style 재현 실험: `paper_raw_results.csv` 768 rows, `paper_summary.csv` 256 rows.
+  - Paper-style 재현 실험: `paper_raw_results.csv` 840 rows, `paper_summary.csv` 280 rows.
 - Paper-style 재현 범위
   - 논문과 같은 figure 축을 사용합니다: sample 수, 사용자 수, RB 수, FL iteration.
   - Linear regression은 논문식 `y = -2x + 1 + 0.4n` 데이터를 사용합니다.
@@ -237,12 +240,12 @@ python run_paper_reproduction.py --output results_paper_quick --seeds 1 --quick
 
 | 실험 축 | 최고/주요 방법 | 핵심 수치 | Paper-Hungarian 기준 |
 |---|---|---:|---:|
-| Fig.4-style linear MSE 평균 | `Soft-Entropy-KKT(tau=1)` | 0.00139 | `Paper-Hungarian` 0.00187 |
-| Fig.4-style linear MSE 평균 | `Hybrid-Score-Greedy(alpha=0.25)` | 0.00151 | `Paper-Hungarian` 0.00187 |
-| Fig.6-style normalized convergence gap | `Paper-Hungarian` / `LP-Relax+Projection` / `Continuous-LP(HiGHS)` | 0.10670 | 동일 |
-| Fig.7-style final digit accuracy, 12 rounds | `Soft-Entropy-KKT(tau=1)` | 0.8776 | `Paper-Hungarian` 0.7970 |
-| Fig.8-style digit accuracy by users 평균 | `Soft-Entropy-KKT(tau=1)` | 0.8773 | `Paper-Hungarian` 0.8251 |
-| Fig.9-style digit accuracy by RBs 평균 | `Soft-Entropy-KKT(tau=1)` | 0.8404 | `Paper-Hungarian` 0.7663 |
+| Fig.4-style linear MSE 평균 | `Soft-Entropy-KKT(tau=1)` | 0.00143 | `Paper-Hungarian` 0.00192 |
+| Fig.4-style linear MSE 평균 | `Hybrid-Score-Greedy(alpha=0.25)` | 0.00154 | `Paper-Hungarian` 0.00192 |
+| Fig.6-style normalized convergence gap | `Paper-Hungarian` / `LP-Relax+Projection` / `Continuous-LP(HiGHS)` | 0.06227 | 동일 |
+| Fig.7-style final digit accuracy, 120 rounds | `Soft-Entropy-KKT(tau=1)` | 0.9401 | `Paper-Hungarian` 0.9375 |
+| Fig.8-style digit accuracy by users 평균 | `Soft-Entropy-KKT(tau=1)` | 0.8949 | `Paper-Hungarian` 0.8808 |
+| Fig.9-style digit accuracy by RBs 평균 | `Soft-Entropy-KKT(tau=1)` | 0.7472 | `Paper-Hungarian` 0.6151 |
 
 논문 baseline이 강조한 조건도 별도로 확인했습니다.
 
@@ -277,8 +280,8 @@ python run_paper_reproduction.py --output results_paper_quick --seeds 1 --quick
   - `tau=5`: smoothing 증가로 평균 gap이 `48.83%`까지 증가합니다.
   - `tau=25`: allocation이 과도하게 퍼져 평균 gap이 `250.57%`로 악화됩니다.
 - Paper-style 재현 실험
-  - `Paper-Hungarian`, `LP-Relax+Projection`, `Continuous-LP(HiGHS)`는 normalized convergence gap에서 같은 값 `0.10670`을 냈습니다. 이는 선형 assignment relaxation이 hard extreme point로 수렴한다는 앞선 결과와 일치합니다.
-  - `Soft-Entropy-KKT(tau=1)`은 digit accuracy에서 가장 높았습니다. 평균 accuracy는 사용자 수 sweep에서 `0.8773`, RB 수 sweep에서 `0.8404`입니다.
+  - `Paper-Hungarian`, `LP-Relax+Projection`, `Continuous-LP(HiGHS)`는 normalized convergence gap에서 같은 값 `0.06227`을 냈습니다. 이는 선형 assignment relaxation이 hard extreme point로 수렴한다는 앞선 결과와 일치합니다.
+  - `Soft-Entropy-KKT(tau=1)`은 digit accuracy에서 가장 높았습니다. 평균 accuracy는 사용자 수 sweep에서 `0.8949`, RB 수 sweep에서 `0.7472`입니다.
   - 이 개선은 soft allocation이 여러 사용자의 업데이트를 fractional하게 반영해 gradient 다양성을 높인 효과로 해석됩니다.
   - 단, 실제 RB가 반드시 0/1 hard allocation이어야 한다면 이 이점은 time-sharing 또는 probabilistic scheduling 계층이 있을 때만 실현 가능합니다.
   - `Paper-OptUser-RandomRB`는 대부분의 축에서 가장 낮았습니다. RB를 random으로 제한하면 user selection을 개선해도 feasible/high-quality edge를 놓치는 손실이 큽니다.
@@ -292,7 +295,7 @@ python run_paper_reproduction.py --output results_paper_quick --seeds 1 --quick
   - Hard 복원이 필요한 경우 rounding/projection 단계 때문에 전체 파이프라인은 완전한 convex optimization으로 닫히지 않습니다.
   - 현재 실험은 synthetic channel/problem generator 기반이며 실제 wireless trace 검증은 포함하지 않았습니다.
   - Paper-style 재현 실험은 논문 figure 구조를 따르지만, Matlab FNN/MNIST 원본 실험을 bitwise 또는 수치적으로 완전 복제한 것은 아닙니다.
-  - Fig.5의 Hungarian iteration은 SciPy가 내부 iteration을 제공하지 않아 solver work proxy로 대체했습니다.
+  - Fig.5의 Hungarian iteration은 SciPy가 내부 iteration을 제공하지 않아 원 논문 축/텍스트를 유지한 solver iteration proxy로 대체했습니다.
 - 추후 계획
   - 전력 변수까지 포함한 convex surrogate 또는 alternating convex optimization 확장.
   - entropy-KKT의 `tau` adaptive scheduling 및 residual 기반 stopping rule 개선.

@@ -25,12 +25,14 @@ def main() -> None:
         settings = PaperReproductionSettings(
             output_dir=args.output,
             seeds=args.seeds,
-            user_sweep=(10, 15),
-            rb_sweep=(5, 12),
+            user_sweep=(6, 12),
+            matching_user_sweep=(5, 10),
+            rb_sweep=(6, 12),
             sample_sweep=(10, 30),
             fixed_users=12,
             fixed_rbs=8,
             digit_rounds=4,
+            digit_sweep_rounds=4,
             iteration_points=(0, 2, 4),
         )
     else:

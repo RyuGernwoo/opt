@@ -1,94 +1,73 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560">
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="390" viewBox="0 0 540 390">
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="90" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="700">Paper Fig.9-style Digit Accuracy by RBs</text>
-<line x1="90" y1="475" x2="670" y2="475" stroke="#222" stroke-width="1.2"/>
-<line x1="90" y1="55" x2="90" y2="475" stroke="#222" stroke-width="1.2"/>
-<line x1="90" y1="475.00" x2="670" y2="475.00" stroke="#e5e5e5"/>
-<text x="78" y="479.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0</text>
-<line x1="90" y1="391.00" x2="670" y2="391.00" stroke="#e5e5e5"/>
-<text x="78" y="395.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.194</text>
-<line x1="90" y1="307.00" x2="670" y2="307.00" stroke="#e5e5e5"/>
-<text x="78" y="311.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.388</text>
-<line x1="90" y1="223.00" x2="670" y2="223.00" stroke="#e5e5e5"/>
-<text x="78" y="227.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.582</text>
-<line x1="90" y1="139.00" x2="670" y2="139.00" stroke="#e5e5e5"/>
-<text x="78" y="143.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.777</text>
-<line x1="90" y1="55.00" x2="670" y2="55.00" stroke="#e5e5e5"/>
-<text x="78" y="59.00" text-anchor="end" font-family="Arial, sans-serif" font-size="12">0.971</text>
-<line x1="90.00" y1="475" x2="90.00" y2="480" stroke="#222"/>
-<text x="90.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">5</text>
-<line x1="244.67" y1="475" x2="244.67" y2="480" stroke="#222"/>
-<text x="244.67" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">9</text>
-<line x1="360.67" y1="475" x2="360.67" y2="480" stroke="#222"/>
-<text x="360.67" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">12</text>
-<line x1="476.67" y1="475" x2="476.67" y2="480" stroke="#222"/>
-<text x="476.67" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">15</text>
-<line x1="670.00" y1="475" x2="670.00" y2="480" stroke="#222"/>
-<text x="670.00" y="499" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">20</text>
-<polyline points="90.00,255.10 244.67,159.49 360.67,127.84 476.67,88.63 670.00,86.11" fill="none" stroke="#1f77b4" stroke-width="2.4"/>
-<circle cx="90.00" cy="255.10" r="3.5" fill="#1f77b4"/>
-<circle cx="244.67" cy="159.49" r="3.5" fill="#1f77b4"/>
-<circle cx="360.67" cy="127.84" r="3.5" fill="#1f77b4"/>
-<circle cx="476.67" cy="88.63" r="3.5" fill="#1f77b4"/>
-<circle cx="670.00" cy="86.11" r="3.5" fill="#1f77b4"/>
-<line x1="705" y1="79" x2="728" y2="79" stroke="#1f77b4" stroke-width="3"/>
-<text x="736" y="83" font-family="Arial, sans-serif" font-size="12">Continuous-LP(HiGHS)</text>
-<polyline points="90.00,200.99 244.67,134.26 360.67,94.37 476.67,89.32 670.00,86.57" fill="none" stroke="#d62728" stroke-width="2.4"/>
-<circle cx="90.00" cy="200.99" r="3.5" fill="#d62728"/>
-<circle cx="244.67" cy="134.26" r="3.5" fill="#d62728"/>
-<circle cx="360.67" cy="94.37" r="3.5" fill="#d62728"/>
-<circle cx="476.67" cy="89.32" r="3.5" fill="#d62728"/>
-<circle cx="670.00" cy="86.57" r="3.5" fill="#d62728"/>
-<line x1="705" y1="101" x2="728" y2="101" stroke="#d62728" stroke-width="3"/>
-<text x="736" y="105" font-family="Arial, sans-serif" font-size="12">Hybrid-Score-Greedy(alpha=0.25)</text>
-<polyline points="90.00,255.10 244.67,159.49 360.67,127.84 476.67,88.63 670.00,86.11" fill="none" stroke="#2ca02c" stroke-width="2.4"/>
-<circle cx="90.00" cy="255.10" r="3.5" fill="#2ca02c"/>
-<circle cx="244.67" cy="159.49" r="3.5" fill="#2ca02c"/>
-<circle cx="360.67" cy="127.84" r="3.5" fill="#2ca02c"/>
-<circle cx="476.67" cy="88.63" r="3.5" fill="#2ca02c"/>
-<circle cx="670.00" cy="86.11" r="3.5" fill="#2ca02c"/>
-<line x1="705" y1="123" x2="728" y2="123" stroke="#2ca02c" stroke-width="3"/>
-<text x="736" y="127" font-family="Arial, sans-serif" font-size="12">LP-Relax+Projection</text>
-<polyline points="90.00,255.10 244.67,159.49 360.67,127.84 476.67,88.63 670.00,86.11" fill="none" stroke="#9467bd" stroke-width="2.4"/>
-<circle cx="90.00" cy="255.10" r="3.5" fill="#9467bd"/>
-<circle cx="244.67" cy="159.49" r="3.5" fill="#9467bd"/>
-<circle cx="360.67" cy="127.84" r="3.5" fill="#9467bd"/>
-<circle cx="476.67" cy="88.63" r="3.5" fill="#9467bd"/>
-<circle cx="670.00" cy="86.11" r="3.5" fill="#9467bd"/>
-<line x1="705" y1="145" x2="728" y2="145" stroke="#9467bd" stroke-width="3"/>
-<text x="736" y="149" font-family="Arial, sans-serif" font-size="12">Paper-Hungarian</text>
-<polyline points="90.00,269.78 244.67,189.52 360.67,181.04 476.67,164.30 670.00,142.29" fill="none" stroke="#ff7f0e" stroke-width="2.4"/>
-<circle cx="90.00" cy="269.78" r="3.5" fill="#ff7f0e"/>
-<circle cx="244.67" cy="189.52" r="3.5" fill="#ff7f0e"/>
-<circle cx="360.67" cy="181.04" r="3.5" fill="#ff7f0e"/>
-<circle cx="476.67" cy="164.30" r="3.5" fill="#ff7f0e"/>
-<circle cx="670.00" cy="142.29" r="3.5" fill="#ff7f0e"/>
-<line x1="705" y1="167" x2="728" y2="167" stroke="#ff7f0e" stroke-width="3"/>
-<text x="736" y="171" font-family="Arial, sans-serif" font-size="12">Paper-OptUser-RandomRB</text>
-<polyline points="90.00,261.07 244.67,157.88 360.67,117.30 476.67,93.68 670.00,93.91" fill="none" stroke="#17becf" stroke-width="2.4"/>
-<circle cx="90.00" cy="261.07" r="3.5" fill="#17becf"/>
-<circle cx="244.67" cy="157.88" r="3.5" fill="#17becf"/>
-<circle cx="360.67" cy="117.30" r="3.5" fill="#17becf"/>
-<circle cx="476.67" cy="93.68" r="3.5" fill="#17becf"/>
-<circle cx="670.00" cy="93.91" r="3.5" fill="#17becf"/>
-<line x1="705" y1="189" x2="728" y2="189" stroke="#17becf" stroke-width="3"/>
-<text x="736" y="193" font-family="Arial, sans-serif" font-size="12">Paper-RandomUserRB</text>
-<polyline points="90.00,265.65 244.67,164.30 360.67,115.69 476.67,88.63 670.00,86.11" fill="none" stroke="#4d4d4d" stroke-width="2.4"/>
-<circle cx="90.00" cy="265.65" r="3.5" fill="#4d4d4d"/>
-<circle cx="244.67" cy="164.30" r="3.5" fill="#4d4d4d"/>
-<circle cx="360.67" cy="115.69" r="3.5" fill="#4d4d4d"/>
-<circle cx="476.67" cy="88.63" r="3.5" fill="#4d4d4d"/>
-<circle cx="670.00" cy="86.11" r="3.5" fill="#4d4d4d"/>
-<line x1="705" y1="211" x2="728" y2="211" stroke="#4d4d4d" stroke-width="3"/>
-<text x="736" y="215" font-family="Arial, sans-serif" font-size="12">Paper-Wireless-PER</text>
-<polyline points="90.00,158.57 244.67,115.92 360.67,107.21 476.67,88.86 670.00,86.34" fill="none" stroke="#1f77b4" stroke-width="2.4"/>
-<circle cx="90.00" cy="158.57" r="3.5" fill="#1f77b4"/>
-<circle cx="244.67" cy="115.92" r="3.5" fill="#1f77b4"/>
-<circle cx="360.67" cy="107.21" r="3.5" fill="#1f77b4"/>
-<circle cx="476.67" cy="88.86" r="3.5" fill="#1f77b4"/>
-<circle cx="670.00" cy="86.34" r="3.5" fill="#1f77b4"/>
-<line x1="705" y1="233" x2="728" y2="233" stroke="#1f77b4" stroke-width="3"/>
-<text x="736" y="237" font-family="Arial, sans-serif" font-size="12">Soft-Entropy-KKT(tau=1)</text>
-<text x="380.0" y="532" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Number of RBs</text>
-<text transform="translate(24 265.0) rotate(-90)" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Accuracy</text>
+<rect x="78" y="22" width="386" height="260" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+<line x1="78" y1="282.00" x2="464" y2="282.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="286.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.1</text>
+<line x1="78" y1="230.00" x2="464" y2="230.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="234.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.264</text>
+<line x1="78" y1="178.00" x2="464" y2="178.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="182.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.428</text>
+<line x1="78" y1="126.00" x2="464" y2="126.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="130.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.592</text>
+<line x1="78" y1="74.00" x2="464" y2="74.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="78.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.756</text>
+<line x1="78" y1="22.00" x2="464" y2="22.00" stroke="#d9d9d9" stroke-width="1"/>
+<text x="69" y="26.00" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="14">0.92</text>
+<line x1="78.00" y1="22" x2="78.00" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="78.00" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">3</text>
+<line x1="206.67" y1="22" x2="206.67" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="206.67" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">6</text>
+<line x1="335.33" y1="22" x2="335.33" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="335.33" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">9</text>
+<line x1="464.00" y1="22" x2="464.00" y2="282" stroke="#d9d9d9" stroke-width="1"/>
+<text x="464.00" y="305" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14">12</text>
+<text x="271.0" y="329" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16">Number of RBs</text>
+<text transform="translate(22 152.0) rotate(-90)" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16">Identification accuracy</text>
+<polyline points="78.00,216.59 206.67,116.27 335.33,82.50 464.00,59.31" fill="none" stroke="#000000" stroke-width="3"/>
+<polyline points="78.00,183.48 206.67,118.46 335.33,104.51 464.00,98.29" fill="none" stroke="#0000ff" stroke-width="3" stroke-dasharray="9 7"/>
+<polyline points="78.00,191.55 206.67,172.39 335.33,81.32 464.00,51.58" fill="none" stroke="#ff0000" stroke-width="3"/>
+<polyline points="78.00,191.89 206.67,107.70 335.33,86.03 464.00,50.40" fill="none" stroke="#b00020" stroke-width="3" stroke-dasharray="2 3"/>
+<polyline points="78.00,216.59 206.67,116.27 335.33,82.50 464.00,59.31" fill="none" stroke="#ff00ff" stroke-width="3" stroke-dasharray="8 5"/>
+<circle cx="78.00" cy="216.59" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="206.67" cy="116.27" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="335.33" cy="82.50" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<circle cx="464.00" cy="59.31" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<polyline points="78.00,201.80 206.67,139.63 335.33,64.01 464.00,34.78" fill="none" stroke="#00aa00" stroke-width="3"/>
+<rect x="74.90" y="198.70" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="203.57" y="136.53" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="332.23" y="60.91" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<rect x="460.90" y="31.68" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<polyline points="78.00,216.59 206.67,116.27 335.33,82.50 464.00,59.31" fill="none" stroke="#00a6d6" stroke-width="3" stroke-dasharray="7 4"/>
+<polygon points="78.00,212.59 74.00,220.09 82.00,220.09" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="206.67,112.27 202.67,119.77 210.67,119.77" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="335.33,78.50 331.33,86.00 339.33,86.00" fill="#00a6d6" stroke="#00a6d6"/>
+<polygon points="464.00,55.31 460.00,62.81 468.00,62.81" fill="#00a6d6" stroke="#00a6d6"/>
+<polyline points="78.00,127.19 206.67,85.19 335.33,50.57 464.00,44.19" fill="none" stroke="#ff8c00" stroke-width="3"/>
+<polygon points="78.00,122.99 73.80,127.19 78.00,131.39 82.20,127.19" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="206.67,80.99 202.47,85.19 206.67,89.39 210.87,85.19" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="335.33,46.37 331.13,50.57 335.33,54.77 339.53,50.57" fill="#ff8c00" stroke="#ff8c00"/>
+<polygon points="464.00,39.99 459.80,44.19 464.00,48.39 468.20,44.19" fill="#ff8c00" stroke="#ff8c00"/>
+<rect x="278" y="104" width="174" height="164" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+<line x1="288" y1="121" x2="320" y2="121" stroke="#000000" stroke-width="3"/>
+<text x="326" y="126" font-family="Arial, Helvetica, sans-serif" font-size="12">Proposed FL</text>
+<line x1="288" y1="139" x2="320" y2="139" stroke="#0000ff" stroke-width="3" stroke-dasharray="9 7"/>
+<text x="326" y="144" font-family="Arial, Helvetica, sans-serif" font-size="12">Baseline a)</text>
+<line x1="288" y1="157" x2="320" y2="157" stroke="#ff0000" stroke-width="3"/>
+<text x="326" y="162" font-family="Arial, Helvetica, sans-serif" font-size="12">Baseline b)</text>
+<line x1="288" y1="175" x2="320" y2="175" stroke="#b00020" stroke-width="3" stroke-dasharray="2 3"/>
+<text x="326" y="180" font-family="Arial, Helvetica, sans-serif" font-size="12">Baseline c)</text>
+<line x1="288" y1="193" x2="320" y2="193" stroke="#ff00ff" stroke-width="3" stroke-dasharray="8 5"/>
+<circle cx="304.00" cy="193.00" r="3.3" fill="#ff00ff" stroke="#ff00ff"/>
+<text x="326" y="198" font-family="Arial, Helvetica, sans-serif" font-size="12">LP-Relax+Proj.</text>
+<line x1="288" y1="211" x2="320" y2="211" stroke="#00aa00" stroke-width="3"/>
+<rect x="300.90" y="207.90" width="6.2" height="6.2" fill="#00aa00" stroke="#00aa00"/>
+<text x="326" y="216" font-family="Arial, Helvetica, sans-serif" font-size="12">Hybrid-Greedy</text>
+<line x1="288" y1="229" x2="320" y2="229" stroke="#00a6d6" stroke-width="3" stroke-dasharray="7 4"/>
+<polygon points="304.00,225.00 300.00,232.50 308.00,232.50" fill="#00a6d6" stroke="#00a6d6"/>
+<text x="326" y="234" font-family="Arial, Helvetica, sans-serif" font-size="12">Continuous-LP</text>
+<line x1="288" y1="247" x2="320" y2="247" stroke="#ff8c00" stroke-width="3"/>
+<polygon points="304.00,242.80 299.80,247.00 304.00,251.20 308.20,247.00" fill="#ff8c00" stroke="#ff8c00"/>
+<text x="326" y="252" font-family="Arial, Helvetica, sans-serif" font-size="12">Soft-KKT tau=1</text>
+<text x="78" y="344" font-family="Times New Roman, serif" font-size="14">Fig. 9. Identification accuracy changes as the number of RBs varies (U =</text>
+<text x="78" y="361" font-family="Times New Roman, serif" font-size="14">15).</text>
 </svg>
